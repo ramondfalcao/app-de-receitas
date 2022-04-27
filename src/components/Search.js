@@ -2,6 +2,6 @@ import React from 'react';
 
 export default function Search() {
   return (
-    <div>Search</div>
+    <input placeholder="search recipe" data-testid="search-input" />
   );
 }

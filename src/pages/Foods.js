@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Header from '../components/Header';
 import CardMeals from '../components/CardMeals';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 export default function Foods(props) {
   const { history } = props;
@@ -20,6 +21,7 @@ export default function Foods(props) {
     <div>
       <Header title="Foods" search />
       { renderMeals() }
+      <Footer />
     </div>
   );
 }

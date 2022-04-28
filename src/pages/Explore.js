@@ -1,8 +1,12 @@
 import React from 'react';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 export default function Explore() {
   return (
-    <Header title="Explore" search={ false } />
+    <div>
+      <Header title="Explore" search={ false } />
+      <Footer />
+    </div>
   );
 }

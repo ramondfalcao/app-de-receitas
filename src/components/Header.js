@@ -19,7 +19,7 @@ function Header({ search, title }) {
         </button>
       </Link>
       <div data-testid="page-title">{title}</div>
-      {!search && (
+      {search && (
         <button
           type="button"
           onClick={ () => (
@@ -29,7 +29,7 @@ function Header({ search, title }) {
         </button>
       )}
       {searchIsTrue && (
-        <Search />
+        <Search title={ title } />
       )}
     </header>
   );

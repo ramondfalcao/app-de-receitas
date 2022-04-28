@@ -3,6 +3,6 @@ import Header from '../components/Header';
 
 export default function Explore() {
   return (
-    <Header title="Explore" search />
+    <Header title="Explore" search={ false } />
   );
 }

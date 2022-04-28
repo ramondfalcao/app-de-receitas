@@ -5,7 +5,6 @@ import { userLogin } from '../redux/action';
 
 function Login() {
   const users = useSelector((state) => state.userReducer.email);
-  /* const user = useSelector((state) => state.authentication.user); */
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
@@ -43,7 +42,6 @@ function Login() {
     login[name]();
     handleLoginValidation();
   }
-
   return (
     <>
       <h1>Login</h1>

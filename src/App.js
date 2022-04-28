@@ -7,9 +7,9 @@ import ContinueRecipes from './pages/ContinueRecipes';
 import Explore from './pages/Explore';
 import Profile from './pages/Profile';
 import './App.css';
-import { requestFirstLetter } from './services/ApiMeals';
 import Drinks from './pages/Drinks';
 import DetailsMeals from './pages/DetailsMeals';
+import DetailsDrinks from './pages/DetailsDrinks';
 import ExploreMeals from './pages/ExploreMeals';
 import ExploreDrinks from './pages/ExploreDrinks';
 import ExploreMealsIngredients from './pages/ExploreMealsIngredients';
@@ -18,8 +18,6 @@ import ExploreMealsNationality from './pages/ExploreMealsNationality';
 import DoneRecipes from './pages/DoneRecipes';
 
 function App() {
-  requestFirstLetter('a').then((e) => console.log(e));
-
   return (
     <Switch>
       <Route exact path="/" component={ Login } />
@@ -28,9 +26,12 @@ function App() {
       <Route exact path="/foods:id" component={ DetailsMeals } />
       <Route exact path="/foods:id/in-progress" component={ ContinueRecipes } />
       <Route exact path="/drinks" component={ Drinks } />
+      <Route exact path="/drinks:id" component={ DetailsDrinks } />
+      <Route exact path="/drinks:id/in-progress" component={ ContinueRecipes } />
       <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
       <Route exact path="/explore" component={ Explore } />
       <Route exact path="/explore/foods" component={ ExploreMeals } />
+      <Route exact path="/explore/drinks" component={ ExploreDrinks } />
       <Route
         exact
         path="/explore/foods/ingredients"
@@ -47,7 +48,6 @@ function App() {
         component={ ExploreMealsNationality }
       />
       <Route exact path="/done-recipes" component={ DoneRecipes } />
-      <Route exact path="/explore/drinks" component={ ExploreDrinks } />
     </Switch>
   );
 }

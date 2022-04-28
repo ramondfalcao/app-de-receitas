@@ -3,6 +3,6 @@ import Header from '../components/Header';
 
 export default function Profile() {
   return (
-    <Header search title="Profile" />
+    <Header title="Profile" search={ false } />
   );
 }

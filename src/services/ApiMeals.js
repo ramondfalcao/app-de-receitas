@@ -1,4 +1,4 @@
-export async function requestIngredient(ingredient) {
+export async function requestMealsIngredient(ingredient) {
   const ENDPOINT = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
   const response = await fetch(ENDPOINT);
   const result = await response.json();
@@ -7,7 +7,7 @@ export async function requestIngredient(ingredient) {
     : Promise.reject(result);
 }
 
-export async function requestName(name) {
+export async function requestMealsName(name) {
   const ENDPOINT = `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`;
   const response = await fetch(ENDPOINT);
   const result = await response.json();
@@ -16,7 +16,7 @@ export async function requestName(name) {
     : Promise.reject(result);
 }
 
-export async function requestFirstLetter(firstLetter) {
+export async function requestMealsFirstLetter(firstLetter) {
   const ENDPOINT = `https://www.themealdb.com/api/json/v1/1/search.php?f=${firstLetter}`;
   const response = await fetch(ENDPOINT);
   const result = await response.json();

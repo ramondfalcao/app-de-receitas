@@ -1,4 +1,4 @@
-import { getDrinks, getMeals, getCategory } from '.';
+import { getDrinks, getMeals, getCategory, getMealId } from '.';
 import {
   requestDrinksFirstLetter,
   requestDrinksIngredient,
@@ -14,6 +14,7 @@ import {
   requestAllMeals,
   requestCategoryMeals,
   requestFilterMeals,
+  requestMealId,
 } from '../../services/ApiMeals';
 
 export const callApiFoods = (search, type) => async (dispatch) => {
@@ -76,4 +77,14 @@ export const callApiDrinks = (search, type) => async (dispatch) => {
   default:
     break;
   }
+};
+
+export const callApiFoodsOfId = (id) => async (dispatch) => {
+  const response = await requestMealId(id);
+  return dispatch(getMealId(response.meals));
+};
+
+export const callApiDrinkOfId = (id) => async (dispatch) => {
+  const response = await requestDrinkId(id);
+  return dispatch(getDrinkId(response.meals));
 };

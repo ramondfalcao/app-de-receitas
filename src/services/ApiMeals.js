@@ -50,3 +50,10 @@ export async function requestFilterMeals(name) {
     ? Promise.resolve(result)
     : Promise.reject(result);
 }
+
+export async function requestMealId(id) {
+  const ENDPOINT = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+  const response = await fetch(ENDPOINT);
+  const result = await response.json();
+  return response.ok ? Promise.resolve(result) : Promise.reject(result);
+}

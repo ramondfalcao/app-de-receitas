@@ -16,7 +16,7 @@ export default function Drinks(props) {
     if (drinks.length === 1) {
       return history.push(`/drinks/${drinks[0].idDrink}`);
     }
-    return <CardDrinks />;
+    return <CardDrinks mazimumArraySize={ 12 } testid="-recipe-card" />;
   }
 
   const dispatch = useDispatch();
@@ -24,6 +24,7 @@ export default function Drinks(props) {
   useEffect(() => {
     dispatch(callApiDrinks('', 'all'));
     dispatch(callApiDrinks('', 'categories'));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const categories = useSelector((state) => state.drinksReducer.categories);

@@ -17,7 +17,7 @@ export default function Foods(props) {
     if (foods.length === 1) {
       return history.push(`/foods/${foods[0].idMeal}`);
     }
-    return <CardMeals />;
+    return <CardMeals mazimumArraySize={ 12 } testid="-recipe-card" />;
   }
 
   const dispatch = useDispatch();
@@ -25,6 +25,7 @@ export default function Foods(props) {
   useEffect(() => {
     dispatch(callApiFoods('', 'all'));
     dispatch(callApiFoods('', 'categories'));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const categories = useSelector((state) => state.mealsReducer.categories);

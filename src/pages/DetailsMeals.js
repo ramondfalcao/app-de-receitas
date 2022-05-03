@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { callApiFoodsOfId } from '../redux/action/actionsAsysc';
+import { callApiDrinks, callApiFoodsOfId } from '../redux/action/actionsAsysc';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import CardDrinksCarousel from '../components/CardDrinksCarousel';
+import 'keen-slider/keen-slider.min.css';
 
 export default function DetailsMeals(props) {
   const { location: { pathname } } = props;
@@ -13,6 +15,7 @@ export default function DetailsMeals(props) {
 
   useEffect(() => {
     dispatch(callApiFoodsOfId(mealId));
+    dispatch(callApiDrinks('', 'all'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const meal = useSelector((state) => state.mealsReducer.meal);
@@ -57,6 +60,7 @@ export default function DetailsMeals(props) {
       />
       <h2>Recommend</h2>
       {/* <p data-testid={ `${index}-recomendation-card` } /> */}
+      <CardDrinksCarousel mazimumArraySize={ 6 } testid="-recomendation-card" />
       <button type="button" data-testid="start-recipe-btn">Start Recipe</button>
 
     </div>

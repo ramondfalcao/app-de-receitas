@@ -4,6 +4,7 @@ export const SEARCH_DRINKS = 'SEARCH_DRINKS';
 export const SEARCH_CATEGORY = 'SEARCH_CATEGORY';
 export const FILTER = 'FILTER';
 export const SEARCH_MEAL_ID = 'SEARCH_MEAL_ID';
+export const SEARCH_DRINK_ID = 'SEARCH_DRINK_ID';
 
 export const userLogin = (email) => ({
   type: LOGIN, email });
@@ -26,4 +27,8 @@ export const getFilters = (search) => ({
 
 export const getMealId = (meal) => ({
   type: SEARCH_MEAL_ID, meal,
+});
+
+export const getDrinkId = (drink) => ({
+  type: SEARCH_DRINK_ID, drink,
 });

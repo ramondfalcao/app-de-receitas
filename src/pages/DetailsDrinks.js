@@ -5,7 +5,6 @@ import { callApiDrinkOfId, callApiFoods } from '../redux/action/actionsAsysc';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import CardMealsCarousel from '../components/CardMealsCarousel';
-import 'keen-slider/keen-slider.min.css';
 
 export default function DetailsDrinks(props) {
   const { location: { pathname } } = props;

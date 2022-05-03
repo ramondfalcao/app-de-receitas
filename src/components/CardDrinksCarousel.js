@@ -2,46 +2,48 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import 'keen-slider/keen-slider.min.css';
-import { useKeenSlider } from 'keen-slider/react';
+import '../../node_modules/slick-carousel/slick/slick.css';
+import '../../node_modules/slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 
 export default function CardDrinksCarousel({ mazimumArraySize, testid }) {
   const drinks = useSelector((state) => state.drinksReducer.drinks);
   const showDrinks = drinks.slice(0, mazimumArraySize);
 
-  const [sliderRef] = useKeenSlider({
-    loop: true,
-    slides: {
-      perView: 2,
-    },
-  });
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+  };
 
-  console.log(sliderRef);
   return (
-    <div ref={ sliderRef } className="keen-slider">
-      {showDrinks.map((drink, index) => (
-        <Link
-          key={ drink.idDrink }
-          to={ `/drinks/${drink.idDrink}` }
-          className="keen-slider__slide"
-        >
-          <div
-            data-testid={ `${index}${testid}` }
+    <section>
+      <Slider { ...settings }>
+        {showDrinks.map((drink, index) => (
+          <Link
+            key={ drink.idDrink }
+            to={ `/drinks/${drink.idDrink}` }
           >
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ drink.strDrinkThumb }
-              alt={ drink.strDrink }
-            />
-            <p
-              data-testid={ `${index}-card-name` }
+            <div
+              data-testid={ `${index}${testid}` }
             >
-              { drink.strDrink }
-            </p>
-          </div>
-        </Link>
-      ))}
-    </div>
+              <img
+                data-testid={ `${index}-card-img` }
+                src={ drink.strDrinkThumb }
+                alt={ drink.strDrink }
+              />
+              <h3
+                data-testid={ `${index}-recomendation-title` }
+              >
+                { drink.strDrink }
+              </h3>
+            </div>
+          </Link>
+        ))}
+      </Slider>
+    </section>
   );
 }
 

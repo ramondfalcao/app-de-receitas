@@ -2,45 +2,48 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import 'keen-slider/keen-slider.min.css';
-import { useKeenSlider } from 'keen-slider/react';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 
 export default function CardMealsCarousel({ mazimumArraySize, testid }) {
   const foods = useSelector((state) => state.mealsReducer.meals);
   const showMeals = foods.slice(0, mazimumArraySize);
 
-  const [sliderRef] = useKeenSlider({
-    loop: true,
-    slides: {
-      perView: 2,
-    },
-  });
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+  };
 
   return (
-    <div ref={ sliderRef } className="keen-slider">
-      {showMeals.map((meal, index) => (
-        <Link
-          key={ meal.idMeal }
-          to={ `/foods/${meal.idMeal}` }
-          className="keen-slider__slide"
-        >
-          <div
-            data-testid={ `${index}${testid}` }
+    <section className="container-card-carousel">
+      <Slider { ...settings }>
+        {showMeals.map((meal, index) => (
+          <Link
+            key={ meal.idMeal }
+            to={ `/foods/${meal.idMeal}` }
           >
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ meal.strMealThumb }
-              alt={ meal.strMeal }
-            />
-            <p
-              data-testid={ `${index}-card-name` }
+            <div
+              data-testid={ `${index}${testid}` }
             >
-              { meal.strMeal }
-            </p>
-          </div>
-        </Link>
-      ))}
-    </div>
+              <img
+                data-testid={ `${index}-card-img` }
+                src={ meal.strMealThumb }
+                alt={ meal.strMeal }
+              />
+              <h3
+                data-testid={ `${index}-recomendation-title` }
+              >
+                { meal.strMeal }
+              </h3>
+            </div>
+          </Link>
+        ))}
+      </Slider>
+    </section>
   );
 }
 

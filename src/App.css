@@ -13,6 +13,14 @@ footer {
   border: 1px solid black;
 }
 
+.btn-start-recipe {
+  background-color: rgb(51, 190, 160);
+  bottom: 0;
+  margin: 30px;
+  position: fixed;
+
+}
+
 /* [ class ^= 'number-slide' ], [ class *= 'number-slide' ] {
   align-items: center;
   background: grey;

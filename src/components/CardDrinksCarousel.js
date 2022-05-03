@@ -19,7 +19,7 @@ export default function CardDrinksCarousel({ mazimumArraySize, testid }) {
   };
 
   return (
-    <section>
+    <section className="container-card-carousel">
       <Slider { ...settings }>
         {showDrinks.map((drink, index) => (
           <Link

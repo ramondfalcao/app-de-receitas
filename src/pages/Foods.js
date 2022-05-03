@@ -11,10 +11,11 @@ export default function Foods(props) {
   const foods = useSelector((state) => state.mealsReducer.meals);
   const [goat, setGoat] = useState('');
   const [filter, setFilter] = useState('');
+  const dispatch = useDispatch();
 
   function renderMeals() {
     if (foods === null) {
-      setFilter('');
+      dispatch(callApiFoods('', 'all'));
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
     if (foods.length === 1) {
@@ -22,8 +23,6 @@ export default function Foods(props) {
     }
     return <CardMeals mazimumArraySize={ 12 } testid="-recipe-card" />;
   }
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(callApiFoods('', 'all'));
@@ -61,7 +60,6 @@ export default function Foods(props) {
   };
 
   return (
-    (dispatch(callApiFoods('', 'categories'))),
     (
       <div>
         <Header title="Foods" search />

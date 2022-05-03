@@ -10,9 +10,11 @@ export default function Drinks(props) {
   const { history } = props;
   const drinks = useSelector((state) => state.drinksReducer.drinks);
   const [filter, setFilter] = useState('');
+  const dispatch = useDispatch();
 
   function renderDrinks() {
     if (drinks === null) {
+      dispatch(callApiDrinks('', 'all'));
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
     if (drinks.length === 1) {
@@ -20,8 +22,6 @@ export default function Drinks(props) {
     }
     return <CardDrinks mazimumArraySize={ 12 } testid="-recipe-card" />;
   }
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(callApiDrinks('', 'all'));
@@ -56,7 +56,6 @@ export default function Drinks(props) {
   };
 
   return (
-    (dispatch(callApiDrinks('', 'categories'))),
     (
       <div>
         <Header title="Drinks" search />

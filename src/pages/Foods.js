@@ -14,6 +14,7 @@ export default function Foods(props) {
 
   function renderMeals() {
     if (foods === null) {
+      setFilter('');
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
     if (foods.length === 1) {
@@ -51,6 +52,7 @@ export default function Foods(props) {
     }
     if (filter === name) {
       dispatch(callApiFoods('', 'all'));
+      setFilter('');
     }
   };
 
@@ -83,7 +85,7 @@ export default function Foods(props) {
         </button>
         {
           goat === 'Goat'
-            ? <CardMeals />
+            ? <CardMeals mazimumArraySize={ 12 } testid="-recipe-card" />
             : renderMeals()
         }
         <Footer />

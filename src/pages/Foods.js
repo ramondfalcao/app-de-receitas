@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CardMeals from '../components/CardMeals';
 import Footer from '../components/Footer';
@@ -9,6 +9,8 @@ import { callApiFoods } from '../redux/action/actionsAsysc';
 export default function Foods(props) {
   const { history } = props;
   const foods = useSelector((state) => state.mealsReducer.meals);
+  const [goat, setGoat] = useState('');
+  const [filter, setFilter] = useState('');
 
   function renderMeals() {
     if (foods === null) {
@@ -34,28 +36,58 @@ export default function Foods(props) {
     buttonsCategories = categories.slice(0, MAXIMUM_ARRAY_SIZE);
   }
 
-  const requestFilter = async ({ target }) => {
+  const requestFilter = ({ target }) => {
     const { name } = target;
-    dispatch(callApiFoods(name, 'filter'));
+    if (filter === '') {
+      dispatch(callApiFoods(name, 'filter'));
+      setFilter(name);
+      setGoat(name);
+    }
+    if (name !== filter) {
+      dispatch(callApiFoods(name, 'filter'));
+      setFilter(name);
+      setGoat(name);
+    }
+    if (filter === name) {
+      dispatch(callApiFoods('', 'all'));
+    }
+  };
+
+  const allRecipes = () => {
+    dispatch(callApiFoods('', 'all'));
   };
 
   return (
-    <div>
-      <Header title="Foods" search />
-      { buttonsCategories && buttonsCategories.map((category, index) => (
+    (dispatch(callApiFoods('', 'categories'))),
+    (
+      <div>
+        <Header title="Foods" search />
+        { buttonsCategories && buttonsCategories.map((category, index) => (
+          <button
+            key={ index }
+            type="button"
+            data-testid={ `${category.strCategory}-category-filter` }
+            onClick={ requestFilter }
+            name={ category.strCategory }
+          >
+            {category.strCategory}
+          </button>
+        ))}
         <button
-          key={ index }
           type="button"
-          data-testid={ `${category.strCategory}-category-filter` }
-          onClick={ requestFilter }
-          name={ category.strCategory }
+          data-testid="All-category-filter"
+          onClick={ allRecipes }
         >
-          {category.strCategory}
+          All
         </button>
-      ))}
-      { renderMeals() }
-      <Footer />
-    </div>
+        {
+          goat === 'Goat'
+            ? <CardMeals />
+            : renderMeals()
+        }
+        <Footer />
+      </div>
+    )
   );
 }
 

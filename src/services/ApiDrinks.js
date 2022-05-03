@@ -43,7 +43,7 @@ export async function requestCategoryDrinks() {
 
 export async function requestFilterDrinks(name) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/1/filter.php?c=${name}`,
+    `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${name}`,
   );
   const result = await response.json();
   return response.ok

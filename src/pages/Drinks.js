@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CardDrinks from '../components/CardDrinks';
 import Footer from '../components/Footer';
@@ -9,7 +9,9 @@ import { callApiDrinks } from '../redux/action/actionsAsysc';
 export default function Drinks(props) {
   const { history } = props;
   const drinks = useSelector((state) => state.drinksReducer.drinks);
-  function teste() {
+  const [filter, setFilter] = useState('');
+
+  function renderDrinks() {
     if (drinks === null) {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
@@ -35,26 +37,50 @@ export default function Drinks(props) {
 
   const requestFilter = async ({ target }) => {
     const { name } = target;
-    dispatch(callApiDrinks(name, 'filter'));
+    if (filter === '') {
+      dispatch(callApiDrinks(name, 'filter'));
+      setFilter(name);
+    }
+    if (name !== filter) {
+      dispatch(callApiDrinks(name, 'filter'));
+      setFilter(name);
+    }
+    if (filter === name) {
+      dispatch(callApiDrinks('', 'all'));
+    }
+  };
+
+  const allRecipes = () => {
+    dispatch(callApiDrinks('', 'all'));
   };
 
   return (
-    <div>
-      <Header title="Drinks" search />
-      { buttonsCategories && buttonsCategories.map((category, index) => (
+    (dispatch(callApiDrinks('', 'categories'))),
+    (
+      <div>
+        <Header title="Drinks" search />
+        { buttonsCategories && buttonsCategories.map((category, index) => (
+          <button
+            key={ index }
+            type="button"
+            data-testid={ `${category.strCategory}-category-filter` }
+            onClick={ requestFilter }
+            name={ category.strCategory }
+          >
+            {category.strCategory}
+          </button>
+        ))}
         <button
-          key={ index }
           type="button"
-          data-testid={ `${category.strCategory}-category-filter` }
-          onClick={ requestFilter }
-          name={ category.strCategory }
+          data-testid="All-category-filter"
+          onClick={ allRecipes }
         >
-          {category.strCategory}
+          All
         </button>
-      ))}
-      { teste() }
-      <Footer />
-    </div>
+        { renderDrinks() }
+        <Footer />
+      </div>
+    )
   );
 }
 

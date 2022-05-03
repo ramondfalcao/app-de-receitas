@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-export default function CardDrinks() {
+export default function CardMeals({ mazimumArraySize, testid }) {
   const foods = useSelector((state) => state.mealsReducer.meals);
-  const MAXIMUM_ARRAY_SIZE = 12;
-  const showMeals = foods.slice(0, MAXIMUM_ARRAY_SIZE);
+  const showMeals = foods.slice(0, mazimumArraySize);
+
   return (
     <div>
       {showMeals.map((meal, index) => (
@@ -14,7 +15,7 @@ export default function CardDrinks() {
           to={ `/foods/${meal.idMeal}` }
         >
           <div
-            data-testid={ `${index}-recipe-card` }
+            data-testid={ `${index}${testid}` }
           >
             <img
               data-testid={ `${index}-card-img` }
@@ -32,3 +33,8 @@ export default function CardDrinks() {
     </div>
   );
 }
+
+CardMeals.propTypes = {
+  mazimumArraySize: PropTypes.number.isRequired,
+  testid: PropTypes.string.isRequired,
+};

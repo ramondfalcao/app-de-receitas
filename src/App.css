@@ -2,3 +2,33 @@ footer {
   bottom: 0;
   position: fixed;
 }
+
+.container-card-carousel .slick-slider {
+  margin: 30px;
+  padding: 30px;
+}
+
+.container-card-carousel button {
+  background-color: black;
+  border: 1px solid black;
+}
+
+.btn-start-recipe {
+  background-color: rgb(51, 190, 160);
+  bottom: 0;
+  margin: 30px;
+  position: fixed;
+
+}
+
+/* [ class ^= 'number-slide' ], [ class *= 'number-slide' ] {
+  align-items: center;
+  background: grey;
+  color: white;
+  display: flex;
+  font-size: 50px;
+  font-weight: 500;
+  height: 300px;
+  justify-content: center;
+  max-height: 100vh;
+} */

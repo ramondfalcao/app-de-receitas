@@ -15,10 +15,10 @@ export default function DetailsDrinks() {
         <img src={ whiteHeartIcon } alt="white-heart-icon" />
       </button>
       <p data-testid="recipe-category" />
-      <h2 data-testid={ `${index}-ingredient-name-and-measure` }>Ingredient</h2>
+      {/* <h2 data-testid={ `${index}-ingredient-name-and-measure` }>Ingredient</h2> */}
       <p data-testid="instructions">Instructions</p>
       <media data-testid="video">video</media>
-      <p data-testid={ `${index}-recomendation-card` } />
+      {/* <p data-testid={ `${index}-recomendation-card` } /> */}
       <button type="button" data-testid="start-recipe-btn">Start Recipe</button>
 
     </div>

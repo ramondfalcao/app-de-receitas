@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Foods from './pages/Foods';
 import FavoriteRecipes from './pages/FavoriteRecipes';
-import ContinueRecipes from './pages/ContinueRecipes';
 import Explore from './pages/Explore';
 import Profile from './pages/Profile';
 import './App.css';
@@ -16,18 +15,31 @@ import ExploreMealsIngredients from './pages/ExploreMealsIngredients';
 import ExploreDrinksIngredients from './pages/ExploreDrinksIngredients';
 import ExploreMealsNationality from './pages/ExploreMealsNationality';
 import DoneRecipes from './pages/DoneRecipes';
+import RecipeMealsInProgress from './pages/RecipeMealsInProgress';
+import RecipeDrinksInProgress from './pages/RecipeDrinksInProgress';
 
 function App() {
+  function createLocalStorageInProgress() {
+    const inProgress = localStorage.getItem('inProgressRecipes');
+    if (!inProgress) {
+      const object = { cocktails: {}, meals: {} };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(object));
+    }
+  }
+  useEffect(() => {
+    createLocalStorageInProgress();
+  }, []);
+
   return (
     <Switch>
       <Route exact path="/" component={ Login } />
       <Route exact path="/profile" component={ Profile } />
       <Route exact path="/foods" component={ Foods } />
       <Route exact path="/foods/:id" component={ DetailsMeals } />
-      <Route exact path="/foods/:id/in-progress" component={ ContinueRecipes } />
+      <Route exact path="/foods/:id/in-progress" component={ RecipeMealsInProgress } />
       <Route exact path="/drinks" component={ Drinks } />
       <Route exact path="/drinks/:id" component={ DetailsDrinks } />
-      <Route exact path="/drinks/:id/in-progress" component={ ContinueRecipes } />
+      <Route exact path="/drinks/:id/in-progress" component={ RecipeDrinksInProgress } />
       <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
       <Route exact path="/explore" component={ Explore } />
       <Route exact path="/explore/foods" component={ ExploreMeals } />

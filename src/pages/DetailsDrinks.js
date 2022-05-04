@@ -40,6 +40,13 @@ export default function DetailsDrinks(props) {
   measures = (itemsMeasures.filter((item) => item[0]
     .includes('strMeasure')));
 
+  function handleClickBTNStartRecipe() {
+    const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    inProgress.cocktails[drinkId] = [];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgress));
+    history.push(`/drinks/${drinkId}/in-progress`);
+  }
+
   function actionButton() {
     const done = JSON.parse(localStorage.getItem('doneRecipes'));
     const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
@@ -69,7 +76,7 @@ export default function DetailsDrinks(props) {
         className="btn-start-recipe"
         type="button"
         data-testid="start-recipe-btn"
-        onClick={ () => history.push(`/drinks/${drinkId}/in-progress`) }
+        onClick={ handleClickBTNStartRecipe }
       >
         Start Recipe
       </button>

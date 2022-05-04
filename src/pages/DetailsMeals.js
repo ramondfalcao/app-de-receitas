@@ -41,6 +41,13 @@ export default function DetailsMeals(props) {
   measures = (itemsMeasures.filter((item) => item[0]
     .includes('strMeasure') && item[1]));
 
+  function handleClickBTNStartRecipe() {
+    const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    inProgress.meals[mealId] = [];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgress));
+    history.push(`/foods/${mealId}/in-progress`);
+  }
+
   function actionButton() {
     const done = JSON.parse(localStorage.getItem('doneRecipes'));
     const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
@@ -67,7 +74,7 @@ export default function DetailsMeals(props) {
         className="btn-start-recipe"
         type="button"
         data-testid="start-recipe-btn"
-        onClick={ () => history.push(`/foods/${mealId}/in-progress`) }
+        onClick={ handleClickBTNStartRecipe }
       >
         Start Recipe
       </button>

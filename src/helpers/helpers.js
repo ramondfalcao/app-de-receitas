@@ -46,3 +46,26 @@ export function favoriteDrinksLocalStorage(recipe, type) {
     localStorage.setItem('favoriteRecipes', JSON.stringify([object]));
   }
 }
+
+function inProgressRecipesMeals(id, item) {
+  const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  const meals = inProgress.meals[id];
+  if (meals && meals.includes(item)) {
+    const newMeals = meals.filter((itemMeal) => itemMeal !== item);
+    inProgress.meals[id] = newMeals;
+    localStorage
+      .setItem('inProgressRecipes', JSON
+        .stringify(inProgress));
+    return inProgress;
+  }
+  const newMeals = [...meals, item];
+  inProgress.meals[id] = newMeals;
+  localStorage
+    .setItem('inProgressRecipes', JSON
+      .stringify(inProgress));
+  return inProgress;
+}
+
+export {
+  inProgressRecipesMeals,
+};

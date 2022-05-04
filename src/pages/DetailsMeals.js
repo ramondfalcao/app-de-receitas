@@ -6,24 +6,30 @@ import copy from 'clipboard-copy';
 import { callApiDrinks, callApiFoodsOfId } from '../redux/action/actionsAsysc';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import CardDrinksCarousel from '../components/CardDrinksCarousel';
+import { favoriteMealsLocalStorage } from '../helpers/helpers';
+
+const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
 const EXPOSURE_TIME = 5000;
 
 export default function DetailsMeals(props) {
   const { location: { pathname } } = props;
   const [messageLinkCopied, setMessageLinkCopied] = useState(false);
+  const [favoriteButton, setFavoriteButton] = useState(false);
   const mealId = (pathname.match(/([0-9])\w+/g))[0];
   const dispatch = useDispatch();
   const re = /watch\?v=/gi;
   const history = useHistory();
+  const meal = useSelector((state) => state.mealsReducer.meal);
 
   useEffect(() => {
     dispatch(callApiFoodsOfId(mealId));
     dispatch(callApiDrinks('', 'all'));
+    setFavoriteButton(favorite && favorite.some(({ id }) => +mealId === +id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const meal = useSelector((state) => state.mealsReducer.meal);
 
   let ingredients = [];
   const itemsIngredients = Object.entries(meal);
@@ -80,11 +86,33 @@ export default function DetailsMeals(props) {
     <div>
       <img data-testid="recipe-photo" src={ meal.strMealThumb } alt={ meal.strMeal } />
       <h1 data-testid="recipe-title">{ meal.strMeal }</h1>
-      <button type="button" data-testid="share-btn" onClick={ linkCopied }>
-        <img src={ shareIcon } alt="share-icon" />
+      <button type="button" onClick={ linkCopied }>
+        <img data-testid="share-btn" src={ shareIcon } alt="share-icon" />
       </button>
-      <button type="button" data-testid="favorite-btn">
-        <img src={ whiteHeartIcon } alt="white-heart-icon" />
+      <button
+        type="button"
+        onClick={ () => {
+          favoriteMealsLocalStorage(meal, 'food');
+          setFavoriteButton(!favoriteButton);
+        } }
+      >
+        {(favoriteButton
+          ? (
+            <img
+              data-testid="favorite-btn"
+              src={ blackHeartIcon }
+              alt="black-heart-icon"
+            />
+          )
+          : (
+            <img
+              data-testid="favorite-btn"
+              src={ whiteHeartIcon }
+              alt="white-heart-icon"
+            />
+          )
+        )}
+
       </button>
       {messageLinkCopied && <p>Link copied!</p>}
       <p data-testid="recipe-category">{ meal.strCategory }</p>

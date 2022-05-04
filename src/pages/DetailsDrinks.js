@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import copy from 'clipboard-copy';
 import { callApiDrinkOfId, callApiFoods } from '../redux/action/actionsAsysc';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import CardMealsCarousel from '../components/CardMealsCarousel';
 
+const EXPOSURE_TIME = 5000;
 export default function DetailsDrinks(props) {
   const { location: { pathname } } = props;
+  const [messageLinkCopied, setMessageLinkCopied] = useState(false);
   const drinkId = (pathname.match(/([0-9])\w+/g))[0];
   const dispatch = useDispatch();
   const history = useHistory();
@@ -63,6 +66,14 @@ export default function DetailsDrinks(props) {
     );
   }
 
+  function linkCopied() {
+    copy(`http://localhost:3000${pathname}`);
+    setMessageLinkCopied(true);
+    setTimeout(() => {
+      setMessageLinkCopied(false);
+    }, EXPOSURE_TIME);
+  }
+
   return (
     <div>
       <img
@@ -71,12 +82,13 @@ export default function DetailsDrinks(props) {
         alt={ drink.strDrink }
       />
       <h1 data-testid="recipe-title">{ drink.strDrink }</h1>
-      <button type="button" data-testid="share-btn">
+      <button type="button" data-testid="share-btn" onClick={ linkCopied }>
         <img src={ shareIcon } alt="share-icon" />
       </button>
       <button type="button" data-testid="favorite-btn">
         <img src={ whiteHeartIcon } alt="white-heart-icon" />
       </button>
+      {messageLinkCopied && <p>Link copied!</p>}
       <p data-testid="recipe-category">{ `${drink.strCategory} ${drink.strAlcoholic}`}</p>
       <h2>Ingredients</h2>
       {ingredients.map((item, index) => (

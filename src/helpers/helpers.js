@@ -7,6 +7,7 @@ export function favoriteMealsLocalStorage(recipe, type) {
     alcoholicOrNot: '',
     name: recipe.strMeal,
     image: recipe.strMealThumb,
+    tags: recipe.strTags,
   };
   const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
   const isfavorite = favoriteRecipes && favoriteRecipes

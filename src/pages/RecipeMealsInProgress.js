@@ -11,16 +11,12 @@ import { callApiFoodsOfId } from '../redux/action/actionsAsysc';
 export default function RecipeMealsInProgress(props) {
   const { location: { pathname } } = props;
   const [favoriteButton, setFavoriteButton] = useState(false);
-  // const [finishButton, setFinishButton] = useState(false);
-  // const [ingredientsChecked, setIngredientsChecked] = useState([]);
   const [messageLinkCopied, setMessageLinkCopied] = useState(false);
+  const [inProgress, setInProgress] = useState('');
   const mealId = (pathname.match(/([0-9])\w+/g))[0];
   const dispatch = useDispatch();
   const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
   const meal = useSelector((state) => state.mealsReducer.meal);
-
-  // console.log(ingredientsChecked);
 
   let ingredients = [];
   const itemsIngredients = Object.entries(meal);
@@ -41,20 +37,14 @@ export default function RecipeMealsInProgress(props) {
   }
 
   function handleCheckbox({ target }) {
-    const test = inProgressRecipesMeals(mealId, target.innerHTML);
-    console.log(test);
-    // const { name } = target.name;
-    // const value = target.checked;
-    // setIngredientsChecked({ [name]: value });
+    setInProgress(inProgressRecipesMeals(mealId, target.value));
   }
-
-  // function finishButtonDisabled() {
-  //   ingredients
-  // }
 
   useEffect(() => {
     setFavoriteButton(favorite && favorite.some(({ id }) => +mealId === +id));
     dispatch(callApiFoodsOfId(mealId));
+    const progress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    setInProgress(progress);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -100,6 +90,7 @@ export default function RecipeMealsInProgress(props) {
             id={ `ingredient-${index}` }
             name={ `ingredient-${index}` }
             type="checkbox"
+            value={ `${ingredient[1]} - ${measures[index][1]}` }
             checked={ inProgress.meals[mealId]
               .includes(`${ingredient[1]} - ${measures[index][1]}`) }
             data-testid={ `${index}-ingredient-step` }
@@ -113,6 +104,8 @@ export default function RecipeMealsInProgress(props) {
         data-testid="finish-recipe-btn"
         type="button"
         className="btn-finish-recipe"
+        disabled={ inProgress && (inProgress.meals[mealId]
+          .length !== ingredients.length) }
       >
         Finish Recipe
       </button>

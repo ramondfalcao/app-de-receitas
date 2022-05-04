@@ -52,15 +52,18 @@ function inProgressRecipesMeals(id, item) {
   const meals = inProgress.meals[id];
   if (meals && meals.includes(item)) {
     const newMeals = meals.filter((itemMeal) => itemMeal !== item);
+    inProgress.meals[id] = newMeals;
     localStorage
       .setItem('inProgressRecipes', JSON
-        .stringify(inProgress.meals[id] = newMeals));
-  } else {
-    const newMeals = [...meals, item];
-    localStorage
-      .setItem('inProgressRecipes', JSON
-        .stringify(inProgress.meals[id] = newMeals));
+        .stringify(inProgress));
+    return inProgress;
   }
+  const newMeals = [...meals, item];
+  inProgress.meals[id] = newMeals;
+  localStorage
+    .setItem('inProgressRecipes', JSON
+      .stringify(inProgress));
+  return inProgress;
 }
 
 export {

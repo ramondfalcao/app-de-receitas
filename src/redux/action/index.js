@@ -5,6 +5,8 @@ export const SEARCH_CATEGORY = 'SEARCH_CATEGORY';
 export const FILTER = 'FILTER';
 export const SEARCH_MEAL_ID = 'SEARCH_MEAL_ID';
 export const SEARCH_DRINK_ID = 'SEARCH_DRINK_ID';
+export const SEARCH_MEAL_RANDOM = 'SEARCH_MEAL_RANDOM';
+export const SEARCH_DRINK_RANDOM = 'SEARCH_DRINK_RANDOM';
 
 export const userLogin = (email) => ({
   type: LOGIN, email });
@@ -31,4 +33,12 @@ export const getMealId = (meal) => ({
 
 export const getDrinkId = (drink) => ({
   type: SEARCH_DRINK_ID, drink,
+});
+
+export const getMealRandom = (mealRandom) => ({
+  type: SEARCH_MEAL_RANDOM, mealRandom,
+});
+
+export const getDrinkRandom = (drinkRandom) => ({
+  type: SEARCH_DRINK_RANDOM, drinkRandom,
 });

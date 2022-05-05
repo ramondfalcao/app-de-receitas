@@ -57,3 +57,10 @@ export async function requestMealId(id) {
   const result = await response.json();
   return response.ok ? Promise.resolve(result) : Promise.reject(result);
 }
+
+export async function requestMealRandom() {
+  const ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/random.php';
+  const response = await fetch(ENDPOINT);
+  const result = await response.json();
+  return response.ok ? Promise.resolve(result) : Promise.reject(result);
+}

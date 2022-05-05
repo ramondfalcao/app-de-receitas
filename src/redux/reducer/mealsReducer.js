@@ -1,4 +1,9 @@
-import { SEARCH_MEALS, SEARCH_CATEGORY, SEARCH_MEAL_ID } from '../action';
+import {
+  SEARCH_MEALS,
+  SEARCH_CATEGORY,
+  SEARCH_MEAL_ID,
+  SEARCH_MEAL_RANDOM,
+} from '../action';
 
 const INITIAL_STATE = {
   meals: [],
@@ -21,6 +26,11 @@ const mealsReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       meal: action.meal[0],
+    };
+  case SEARCH_MEAL_RANDOM:
+    return {
+      ...state,
+      meal: action.mealRandom[0],
     };
   default:
     return state;

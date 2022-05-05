@@ -24,22 +24,29 @@ export default function CardDonesFoods(props) {
           src={ recipe.image }
           alt={ recipe.name }
         />
+      </Link>
+      <Link to={ `/foods/${recipe.id}` }>
         <h1 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h1>
       </Link>
-      <p
-        data-testid={ `${index}-horizontal-top-text` }
-      >
-        {`${recipe.nationality} - ${recipe.category}`}
-      </p>
-      <p data-testid={ `${index}-horizontal-done-date` }>{ recipe.doneDate }</p>
-      {recipe.tags.map((tag, id) => (
-        <p
-          key={ id }
-          data-testid={ `${index}-${tag}-horizontal-tag` }
+      <div>
+        <h2
+          data-testid={ `${index}-horizontal-top-text` }
         >
-          {tag}
-        </p>
-      ))}
+          {`${recipe.nationality} - ${recipe.category}`}
+        </h2>
+        <p data-testid={ `${index}-horizontal-done-date` }>{ recipe.doneDate }</p>
+        {recipe.tags
+          ? recipe.tags.map((tag) => (
+            <h3
+              key={ tag }
+              data-testid={ `${index}-${tag}-horizontal-tag` }
+
+            >
+              {tag}
+            </h3>
+          ))
+          : <p>Nao tem nada aqui</p>}
+      </div>
       <button
         type="button"
         onClick={ linkCopied }

@@ -1,20 +1,18 @@
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import CardDonesDrinks from '../components/CardDonesDrinks';
 import CardDonesFoods from '../components/CardDonesFoods';
 import Header from '../components/Header';
 
-export default function DoneRecipes(props) {
-  const { location } = props;
+export default function DoneRecipes() {
   const done = JSON.parse(localStorage.getItem('doneRecipes'));
   const [doneRecipes, setDoneRecipes] = useState(done);
 
   const filterFoods = () => {
-    setDoneRecipes(done.filter((recipe) => recipe.type === 'comida'));
+    setDoneRecipes(done.filter((recipe) => recipe.type === 'food'));
   };
 
   const filterDrinks = () => {
-    setDoneRecipes(done.filter((recipe) => recipe.type === 'bebida'));
+    setDoneRecipes(done.filter((recipe) => recipe.type === 'drink'));
   };
 
   const filterAll = () => {
@@ -46,13 +44,12 @@ export default function DoneRecipes(props) {
         Drinks
       </button>
       {doneRecipes && doneRecipes.map((recipe, index) => (
-        recipe.type === 'comida'
+        recipe.type === 'food'
           ? (
             <CardDonesFoods
               key={ recipe.id }
               index={ index }
               recipe={ recipe }
-              location={ location }
             />
           )
           : (
@@ -60,14 +57,9 @@ export default function DoneRecipes(props) {
               key={ recipe.id }
               index={ index }
               recipe={ recipe }
-              location={ location }
             />
           )
       )) }
     </div>
   );
 }
-
-DoneRecipes.propTypes = {
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
-};

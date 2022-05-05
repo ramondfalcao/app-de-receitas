@@ -24,6 +24,8 @@ export default function CardDonesDrinks(props) {
           src={ recipe.image }
           alt={ recipe.name }
         />
+      </Link>
+      <Link to={ `/drinks/${recipe.id}` }>
         <h1 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h1>
       </Link>
       <div>

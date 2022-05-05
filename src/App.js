@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Foods from './pages/Foods';
@@ -19,16 +19,19 @@ import RecipeMealsInProgress from './pages/RecipeMealsInProgress';
 import RecipeDrinksInProgress from './pages/RecipeDrinksInProgress';
 
 function App() {
-  function createLocalStorageInProgress() {
+  function createLocalStorageInProgressAndDone() {
     const inProgress = localStorage.getItem('inProgressRecipes');
     if (!inProgress) {
       const object = { cocktails: {}, meals: {} };
       localStorage.setItem('inProgressRecipes', JSON.stringify(object));
     }
+    const done = localStorage.getItem('doneRecipes');
+    if (!done) {
+      localStorage.setItem('doneRecipes', JSON.stringify([]));
+    }
   }
-  useEffect(() => {
-    createLocalStorageInProgress();
-  }, []);
+
+  createLocalStorageInProgressAndDone();
 
   return (
     <Switch>

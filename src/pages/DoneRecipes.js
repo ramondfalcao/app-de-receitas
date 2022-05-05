@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Header from '../components/Header';
+import React, { useState } from 'react';
 import CardDonesDrinks from '../components/CardDonesDrinks';
 import CardDonesFoods from '../components/CardDonesFoods';
+import Header from '../components/Header';
 
 export default function DoneRecipes(props) {
   const { location } = props;
@@ -10,11 +10,11 @@ export default function DoneRecipes(props) {
   const [doneRecipes, setDoneRecipes] = useState(done);
 
   const filterFoods = () => {
-    setDoneRecipes(done.filter((recipe) => recipe.type === 'foods'));
+    setDoneRecipes(done.filter((recipe) => recipe.type === 'comida'));
   };
 
   const filterDrinks = () => {
-    setDoneRecipes(done.filter((recipe) => recipe.type === 'drinks'));
+    setDoneRecipes(done.filter((recipe) => recipe.type === 'bebida'));
   };
 
   const filterAll = () => {
@@ -46,10 +46,10 @@ export default function DoneRecipes(props) {
         Drinks
       </button>
       {doneRecipes && doneRecipes.map((recipe, index) => (
-        recipe.type === 'food'
+        recipe.type === 'comida'
           ? (
             <CardDonesFoods
-              key={ recipe.idMeal }
+              key={ recipe.id }
               index={ index }
               recipe={ recipe }
               location={ location }
@@ -57,7 +57,7 @@ export default function DoneRecipes(props) {
           )
           : (
             <CardDonesDrinks
-              key={ recipe.idDrink }
+              key={ recipe.id }
               index={ index }
               recipe={ recipe }
               location={ location }

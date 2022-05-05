@@ -88,7 +88,7 @@ export function inProgressRecipesDrinks(id, item) {
 export function doneRecipesMeals(item) {
   const object = {
     id: item.idMeal,
-    type: 'comida',
+    type: 'food',
     nationality: item.strArea,
     category: item.strCategory,
     alcoholicOrNot: '',
@@ -105,7 +105,7 @@ export function doneRecipesMeals(item) {
 export function doneRecipesDrinks(item) {
   const object = {
     id: item.idDrink,
-    type: 'bebida',
+    type: 'drink',
     nationality: '',
     category: item.strCategory,
     alcoholicOrNot: item.strAlcoholic,

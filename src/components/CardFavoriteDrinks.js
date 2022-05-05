@@ -30,6 +30,7 @@ export default function CardFavoriteDrinks(props) {
     <div>
       <Link to={ `/drinks/${recipe.id}` }>
         <img
+          style={ { width: '120px' } }
           data-testid={ `${index}-horizontal-image` }
           src={ recipe.image }
           alt={ recipe.name }

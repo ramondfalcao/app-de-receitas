@@ -64,3 +64,11 @@ export async function requestMealRandom() {
   const result = await response.json();
   return response.ok ? Promise.resolve(result) : Promise.reject(result);
 }
+
+export async function requestMealIngredients() {
+  const ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
+  const response = await fetch(ENDPOINT);
+  const result = await response.json();
+  console.log(result);
+  return response.ok ? Promise.resolve(result) : Promise.reject(result);
+}

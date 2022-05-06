@@ -3,11 +3,13 @@ import {
   SEARCH_CATEGORY,
   SEARCH_MEAL_ID,
   SEARCH_MEAL_RANDOM,
+  SEARCH_MEALS_INGREDIENTS,
 } from '../action';
 
 const INITIAL_STATE = {
   meals: [],
   meal: {},
+  ingredients: [],
 };
 
 const mealsReducer = (state = INITIAL_STATE, action) => {
@@ -31,6 +33,11 @@ const mealsReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       meal: action.mealRandom[0],
+    };
+  case SEARCH_MEALS_INGREDIENTS:
+    return {
+      ...state,
+      ingredients: action.mealsIngredients,
     };
   default:
     return state;

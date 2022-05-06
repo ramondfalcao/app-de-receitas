@@ -6,6 +6,8 @@ import {
   getDrinkId,
   getMealRandom,
   getDrinkRandom,
+  getDrinkIngredients,
+  getMealsIngredients,
 } from '.';
 
 import {
@@ -17,6 +19,7 @@ import {
   requestFilterDrinks,
   requestDrinkId,
   requestDrinkRandom,
+  requestDrinkIngredients,
 } from '../../services/ApiDrinks';
 
 import {
@@ -28,6 +31,7 @@ import {
   requestFilterMeals,
   requestMealId,
   requestMealRandom,
+  requestMealIngredients,
 } from '../../services/ApiMeals';
 
 export const callApiFoods = (search, type) => async (dispatch) => {
@@ -112,4 +116,16 @@ export const callApiDrinkRandom = () => async (dispatch) => {
   const response = await requestDrinkRandom();
   console.log(response);
   return dispatch(getDrinkRandom(response.drinks));
+};
+
+export const callApiDrinkIngredients = () => async (dispatch) => {
+  const response = await requestDrinkIngredients();
+  console.log(response);
+  return dispatch(getDrinkIngredients(response.drinks));
+};
+
+export const callApiMealIngredients = () => async (dispatch) => {
+  const response = await requestMealIngredients();
+  console.log(response);
+  return dispatch(getMealsIngredients(response.meals));
 };

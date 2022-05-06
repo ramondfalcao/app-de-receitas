@@ -64,3 +64,11 @@ export async function requestDrinkRandom() {
   const result = await response.json();
   return response.ok ? Promise.resolve(result) : Promise.reject(result);
 }
+
+export async function requestDrinkIngredients() {
+  const ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+  const response = await fetch(ENDPOINT);
+  const result = await response.json();
+  console.log(result);
+  return response.ok ? Promise.resolve(result) : Promise.reject(result);
+}

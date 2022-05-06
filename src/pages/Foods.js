@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CardMeals from '../components/CardMeals';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { loadingAll } from '../redux/action';
 import { callApiFoods } from '../redux/action/actionsAsysc';
 
 export default function Foods(props) {
@@ -11,6 +12,7 @@ export default function Foods(props) {
   const foods = useSelector((state) => state.mealsReducer.meals);
   const [goat, setGoat] = useState('');
   const [filter, setFilter] = useState('');
+  const loading = useSelector((state) => state.loadingAllReducer.loadingAll);
   const dispatch = useDispatch();
 
   function renderMeals() {
@@ -25,8 +27,14 @@ export default function Foods(props) {
   }
 
   useEffect(() => {
-    dispatch(callApiFoods('', 'all'));
+    console.log(loading);
+    if (loading) {
+      console.log('ALOU');
+      dispatch(callApiFoods('', 'all'));
+    }
+    console.log('FORA DO IF');
     dispatch(callApiFoods('', 'categories'));
+    dispatch(loadingAll(true));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

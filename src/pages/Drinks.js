@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import CardDrinks from '../components/CardDrinks';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { loadingAll } from '../redux/action';
 import { callApiDrinks } from '../redux/action/actionsAsysc';
 
 export default function Drinks(props) {
   const { history } = props;
   const drinks = useSelector((state) => state.drinksReducer.drinks);
+  const loading = useSelector((state) => state.loadingAllReducer.loadingAll);
+
   const [filter, setFilter] = useState('');
   const dispatch = useDispatch();
 
@@ -24,8 +27,14 @@ export default function Drinks(props) {
   }
 
   useEffect(() => {
-    dispatch(callApiDrinks('', 'all'));
+    console.log(loading);
+    if (loading) {
+      console.log('LOADING');
+      dispatch(callApiDrinks('', 'all'));
+    }
+    console.log('FORA DO IF');
     dispatch(callApiDrinks('', 'categories'));
+    dispatch(loadingAll(true));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

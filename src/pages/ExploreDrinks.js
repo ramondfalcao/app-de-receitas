@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { callApiDrinkRandom } from '../redux/action/actionsAsysc';
+import './ExploreMealsAndDrinks.css';
 
 export default function ExploreDrinks() {
   const history = useHistory();
@@ -18,7 +19,7 @@ export default function ExploreDrinks() {
   return (
     <>
       <Header title="Explore Drinks" search={ false } />
-      <section>
+      <section className="section-buttons-explore">
         <button
           type="button"
           data-testid="explore-by-ingredient"

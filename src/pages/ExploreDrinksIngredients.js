@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { loadingAll } from '../redux/action';
 import { callApiDrinkIngredients, callApiDrinks } from '../redux/action/actionsAsysc';
+import './ExploreIngredients.css';
 
 export default function ExploreDrinksIngredients() {
   const history = useHistory();
@@ -28,17 +29,19 @@ export default function ExploreDrinksIngredients() {
   return (
     <div>
       <Header title="Explore Ingredients" search={ false } />
-      {showIngredients.map((item, index) => (
-        <button
-          key={ index }
-          type="button"
-          data-testid={ `${index}-ingredient-card` }
-          onClick={ () => handleClick(item.strIngredient1) }
-        >
-          <img data-testid={ `${index}-card-img` } src={ `https://www.thecocktaildb.com/images/ingredients/${item.strIngredient1}-Small.png` } alt={ item.strIngredient1 } />
-          <p data-testid={ `${index}-card-name` }>{item.strIngredient1}</p>
-        </button>
-      ))}
+      <main className="main-ingredients">
+        {showIngredients.map((item, index) => (
+          <button
+            key={ index }
+            type="button"
+            data-testid={ `${index}-ingredient-card` }
+            onClick={ () => handleClick(item.strIngredient1) }
+          >
+            <img data-testid={ `${index}-card-img` } src={ `https://www.thecocktaildb.com/images/ingredients/${item.strIngredient1}-Small.png` } alt={ item.strIngredient1 } />
+            <p data-testid={ `${index}-card-name` }>{item.strIngredient1}</p>
+          </button>
+        ))}
+      </main>
       <Footer />
     </div>
   );

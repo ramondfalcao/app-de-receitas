@@ -1,12 +1,21 @@
+main {
+  background-color: whitesmoke
+}
+
 .categories-container {
   display: grid;
   gap: 5px;
   grid-template-columns: auto auto auto;
+  margin-top: 15px;
   width: 100%;
 }
 
 .btn-category {
   font-size: 17px;
   padding: 6px;
+}
+
+.btn-category:hover {
+  background-color: #29e097;
 }
 

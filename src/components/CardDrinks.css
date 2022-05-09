@@ -10,13 +10,14 @@
 .img-drinks {
   border-radius: 2%;
   margin-top: 30px;
-  width: 250px;
+  width: 100%;
 }
 
 .card-drink {
-  background: #e0e0e0;
   border-radius: 30px;
-  box-shadow: 15px 15px 30px #bebebe;
+  box-shadow: 15px 15px 30px #bebebe,
+              -15px -15px 30px #ffffff;
+  color: black;
   margin-bottom: 40px;
   text-align: center;
   transition: 0.5s;

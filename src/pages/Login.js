@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { userLogin } from '../redux/action';
+import logo1 from '../images/logo1.svg';
 import './Login.css';
 
 function Login() {
@@ -46,24 +47,25 @@ function Login() {
   return (
     <main className="main-login">
       <form className="form-login">
-        <h1>Login</h1>
+        <img className="logo" alt="" src={ logo1 } />
+        {/* <h1>Recipes App</h1> */}
         <p>{users}</p>
         <input
           type="email"
-          placeholder="Email"
+          placeholder="email@email.com"
           data-testid="email-input"
           name="email"
-          className="inputs"
+          className="inputs input"
           value={ email }
           onChange={ handleChange }
           /* onChange={ (({ target }) => setEmail(target.value), handleLoginValidation) } */
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="********"
           data-testid="password-input"
           value={ password }
-          className="inputs"
+          className="inputs input"
           name="password"
           onChange={ handleChange }
           /* onChange={ (({ target }) => setPassword(target.value), handleLoginValidation) } */
@@ -71,7 +73,7 @@ function Login() {
         <button
           data-testid="login-submit-btn"
           type="submit"
-          className="inputs"
+          className="inputs btn-login"
           onClick={ (() => dispatch(userLogin(email)), handleLocalStorage) }
           disabled={ buttonDisabled }
         >

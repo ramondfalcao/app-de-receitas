@@ -71,14 +71,16 @@ export default function DetailsMeals(props) {
       );
     }
     return (
-      <button
-        className="btn-start-recipe"
-        type="button"
-        data-testid="start-recipe-btn"
-        onClick={ handleClickBTNStartRecipe }
-      >
-        Start Recipe
-      </button>
+      <div className="start-recipe">
+        <button
+          className="btn-start-recipe"
+          type="button"
+          data-testid="start-recipe-btn"
+          onClick={ handleClickBTNStartRecipe }
+        >
+          Start Recipe
+        </button>
+      </div>
     );
   }
 
@@ -147,22 +149,26 @@ export default function DetailsMeals(props) {
         <h2>Instructions</h2>
         <p data-testid="instructions">{ meal.strInstructions }</p>
       </div>
-      <h2>Video</h2>
-      <iframe
-        data-testid="video"
-        width="560"
-        height="315"
-        src={ meal.strYoutube && meal.strYoutube.replace(re, 'embed/') }
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write;
+      <div className="video-section">
+        <h2>Video</h2>
+        <iframe
+          className="video"
+          data-testid="video"
+          width="560"
+          height="315"
+          src={ meal.strYoutube && meal.strYoutube.replace(re, 'embed/') }
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write;
         encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
-      <h2>Recommend</h2>
-      {/* <p data-testid={ `${index}-recomendation-card` } /> */}
-      <CardDrinksCarousel mazimumArraySize={ 6 } testid="-recomendation-card" />
-      {actionButton()}
+          allowFullScreen
+        />
+      </div>
+      <div className="recommend-section">
+        <h2>Recommend</h2>
+        <CardDrinksCarousel mazimumArraySize={ 6 } testid="-recomendation-card" />
+        {actionButton()}
+      </div>
     </main>
   );
 }

@@ -30,6 +30,7 @@ export default function CardDrinksCarousel({ mazimumArraySize, testid }) {
               data-testid={ `${index}${testid}` }
             >
               <img
+                className="img-carousel"
                 data-testid={ `${index}-card-img` }
                 src={ drink.strDrinkThumb }
                 alt={ drink.strDrink }

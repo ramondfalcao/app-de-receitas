@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
+import './CardMealsCarousel.css';
 
 export default function CardMealsCarousel({ mazimumArraySize, testid }) {
   const foods = useSelector((state) => state.mealsReducer.meals);
@@ -30,6 +31,7 @@ export default function CardMealsCarousel({ mazimumArraySize, testid }) {
               data-testid={ `${index}${testid}` }
             >
               <img
+                className="img-carousel"
                 data-testid={ `${index}-card-img` }
                 src={ meal.strMealThumb }
                 alt={ meal.strMeal }

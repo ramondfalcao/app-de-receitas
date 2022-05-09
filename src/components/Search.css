@@ -1,0 +1,15 @@
+.form-search {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 70px;
+  justify-content: center;
+  width: 100%;
+}
+
+.types-search-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5px;
+  width: 100%;
+}

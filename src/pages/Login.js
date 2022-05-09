@@ -45,14 +45,15 @@ function Login() {
   }
   return (
     <main className="main-login">
-      <h1>Login</h1>
-      <p>{users}</p>
-      <form>
+      <form className="form-login">
+        <h1>Login</h1>
+        <p>{users}</p>
         <input
           type="email"
           placeholder="Email"
           data-testid="email-input"
           name="email"
+          className="inputs"
           value={ email }
           onChange={ handleChange }
           /* onChange={ (({ target }) => setEmail(target.value), handleLoginValidation) } */
@@ -62,6 +63,7 @@ function Login() {
           placeholder="Password"
           data-testid="password-input"
           value={ password }
+          className="inputs"
           name="password"
           onChange={ handleChange }
           /* onChange={ (({ target }) => setPassword(target.value), handleLoginValidation) } */
@@ -69,6 +71,7 @@ function Login() {
         <button
           data-testid="login-submit-btn"
           type="submit"
+          className="inputs"
           onClick={ (() => dispatch(userLogin(email)), handleLocalStorage) }
           disabled={ buttonDisabled }
         >

@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { loadingAll } from '../redux/action';
 import { callApiFoods } from '../redux/action/actionsAsysc';
+import './Foods.css';
 
 export default function Foods(props) {
   const { history } = props;
@@ -69,33 +70,39 @@ export default function Foods(props) {
 
   return (
     (
-      <div>
+      <>
         <Header title="Foods" search />
-        { buttonsCategories && buttonsCategories.map((category, index) => (
-          <button
-            key={ index }
-            type="button"
-            data-testid={ `${category.strCategory}-category-filter` }
-            onClick={ requestFilter }
-            name={ category.strCategory }
-          >
-            {category.strCategory}
-          </button>
-        ))}
-        <button
-          type="button"
-          data-testid="All-category-filter"
-          onClick={ allRecipes }
-        >
-          All
-        </button>
-        {
-          goat === 'Goat'
-            ? <CardMeals mazimumArraySize={ 12 } testid="-recipe-card" />
-            : renderMeals()
-        }
+        <main className="main-foods">
+          <section className="categories-container">
+            { buttonsCategories && buttonsCategories.map((category, index) => (
+              <button
+                key={ index }
+                type="button"
+                className="btn-category"
+                data-testid={ `${category.strCategory}-category-filter` }
+                onClick={ requestFilter }
+                name={ category.strCategory }
+              >
+                {category.strCategory}
+              </button>
+            ))}
+            <button
+              type="button"
+              className="btn-category"
+              data-testid="All-category-filter"
+              onClick={ allRecipes }
+            >
+              All
+            </button>
+          </section>
+          {
+            goat === 'Goat'
+              ? <CardMeals mazimumArraySize={ 12 } testid="-recipe-card" />
+              : renderMeals()
+          }
+        </main>
         <Footer />
-      </div>
+      </>
     )
   );
 }

@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { loadingAll } from '../redux/action';
 import { callApiDrinks } from '../redux/action/actionsAsysc';
+import './Drinks.css';
 
 export default function Drinks(props) {
   const { history } = props;
@@ -66,29 +67,35 @@ export default function Drinks(props) {
 
   return (
     (
-      <div>
+      <>
         <Header title="Drinks" search />
-        { buttonsCategories && buttonsCategories.map((category, index) => (
-          <button
-            key={ index }
-            type="button"
-            data-testid={ `${category.strCategory}-category-filter` }
-            onClick={ requestFilter }
-            name={ category.strCategory }
-          >
-            {category.strCategory}
-          </button>
-        ))}
-        <button
-          type="button"
-          data-testid="All-category-filter"
-          onClick={ allRecipes }
-        >
-          All
-        </button>
-        { renderDrinks() }
-        <Footer />
-      </div>
+        <main className="main-drinks">
+          <section className="categories-container">
+            { buttonsCategories && buttonsCategories.map((category, index) => (
+              <button
+                key={ index }
+                type="button"
+                className="btn-category"
+                data-testid={ `${category.strCategory}-category-filter` }
+                onClick={ requestFilter }
+                name={ category.strCategory }
+              >
+                {category.strCategory}
+              </button>
+            ))}
+            <button
+              type="button"
+              className="btn-category"
+              data-testid="All-category-filter"
+              onClick={ allRecipes }
+            >
+              All
+            </button>
+          </section>
+          { renderDrinks() }
+          <Footer />
+        </main>
+      </>
     )
   );
 }

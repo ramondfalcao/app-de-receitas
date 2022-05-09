@@ -2,35 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import './CardMeals.css';
 
 export default function CardMeals({ mazimumArraySize, testid }) {
   const foods = useSelector((state) => state.mealsReducer.meals);
   const showMeals = foods.slice(0, mazimumArraySize);
 
   return (
-    <div>
+    <section className="cards-container">
       {showMeals.map((meal, index) => (
-        <Link
-          key={ meal.idMeal }
-          to={ `/foods/${meal.idMeal}` }
-        >
-          <div
-            data-testid={ `${index}${testid}` }
+        <div key={ meal.idMeal } className="card-food">
+          <Link
+            className="link-food"
+            to={ `/foods/${meal.idMeal}` }
           >
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ meal.strMealThumb }
-              alt={ meal.strMeal }
-            />
-            <p
-              data-testid={ `${index}-card-name` }
+            <div
+              data-testid={ `${index}${testid}` }
             >
-              { meal.strMeal }
-            </p>
-          </div>
-        </Link>
+              <img
+                className="img-foods"
+                data-testid={ `${index}-card-img` }
+                src={ meal.strMealThumb }
+                alt={ meal.strMeal }
+              />
+              <p
+                className="title-cards-food"
+                data-testid={ `${index}-card-name` }
+              >
+                { meal.strMeal }
+              </p>
+            </div>
+          </Link>
+        </div>
       ))}
-    </div>
+    </section>
   );
 }
 

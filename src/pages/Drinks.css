@@ -1,0 +1,11 @@
+.categories-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.btn-category {
+  font-size: 12px;
+  padding: 4px;
+}
+

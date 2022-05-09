@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Header from '../components/Header';
+import React, { useEffect, useState } from 'react';
 import CardFavoriteDrinks from '../components/CardFavoriteDrinks';
 import CardFavoriteFood from '../components/CardFavoriteFood';
+import Header from '../components/Header';
+import './FavoriteRecipes.css';
 
 export default function FavoriteRecipes(props) {
   const { location } = props;
@@ -29,48 +30,52 @@ export default function FavoriteRecipes(props) {
   return (
     <div>
       <Header title="Favorite Recipes" search={ false } />
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ filterAll }
-      >
-        All
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ filterFoods }
-      >
-        Foods
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ filterDrinks }
-      >
-        Drinks
-      </button>
-      {favoritesRecipes && favoritesRecipes.map((recipe, index) => (
-        recipe.type === 'food'
-          ? (
-            <CardFavoriteFood
-              key={ recipe.id }
-              index={ index }
-              recipe={ recipe }
-              location={ location }
-              setFavoritesRecipes={ setFavoritesRecipes }
-            />
-          )
-          : (
-            <CardFavoriteDrinks
-              key={ recipe.id }
-              index={ index }
-              recipe={ recipe }
-              location={ location }
-              setFavoritesRecipes={ setFavoritesRecipes }
-            />
-          )
-      )) }
+      <section className="section-buttons-filter">
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ filterAll }
+        >
+          All
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ filterFoods }
+        >
+          Foods
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ filterDrinks }
+        >
+          Drinks
+        </button>
+      </section>
+      <main className="main-favorites">
+        {favoritesRecipes && favoritesRecipes.map((recipe, index) => (
+          recipe.type === 'food'
+            ? (
+              <CardFavoriteFood
+                key={ recipe.id }
+                index={ index }
+                recipe={ recipe }
+                location={ location }
+                setFavoritesRecipes={ setFavoritesRecipes }
+              />
+            )
+            : (
+              <CardFavoriteDrinks
+                key={ recipe.id }
+                index={ index }
+                recipe={ recipe }
+                location={ location }
+                setFavoritesRecipes={ setFavoritesRecipes }
+              />
+            )
+        )) }
+      </main>
     </div>
   );
 }

@@ -1,0 +1,4 @@
+.main-ingredients {
+    display: grid;
+    grid-template-columns: auto auto; 
+}

@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { loadingAll } from '../redux/action';
 import { callApiFoods, callApiMealIngredients } from '../redux/action/actionsAsysc';
+import './ExploreIngredients.css';
 
 export default function ExploreMealsIngredients() {
   const history = useHistory();
@@ -27,21 +28,23 @@ export default function ExploreMealsIngredients() {
   return (
     <div>
       <Header title="Explore Ingredients" search={ false } />
-      {showIngredients.map((item, index) => (
-        <button
-          key={ index }
-          type="button"
-          data-testid={ `${index}-ingredient-card` }
-          onClick={ () => handleClick(item.strIngredient) }
-        >
-          <img
-            data-testid={ `${index}-card-img` }
-            src={ `https://www.themealdb.com/images/ingredients/${item.strIngredient}-Small.png` }
-            alt={ item.strIngredient }
-          />
-          <p data-testid={ `${index}-card-name` }>{item.strIngredient}</p>
-        </button>
-      ))}
+      <main className="main-ingredients">
+        {showIngredients.map((item, index) => (
+          <button
+            key={ index }
+            type="button"
+            data-testid={ `${index}-ingredient-card` }
+            onClick={ () => handleClick(item.strIngredient) }
+          >
+            <img
+              data-testid={ `${index}-card-img` }
+              src={ `https://www.themealdb.com/images/ingredients/${item.strIngredient}-Small.png` }
+              alt={ item.strIngredient }
+            />
+            <p data-testid={ `${index}-card-name` }>{item.strIngredient}</p>
+          </button>
+        ))}
+      </main>
       <Footer />
     </div>
   );

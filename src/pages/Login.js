@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { userLogin } from '../redux/action';
+import './Login.css';
 
 function Login() {
   const users = useSelector((state) => state.userReducer.email);
@@ -43,7 +44,7 @@ function Login() {
     handleLoginValidation();
   }
   return (
-    <>
+    <main className="main-login">
       <h1>Login</h1>
       <p>{users}</p>
       <form>
@@ -74,7 +75,7 @@ function Login() {
           Enter
         </button>
       </form>
-    </>
+    </main>
   );
 }
 

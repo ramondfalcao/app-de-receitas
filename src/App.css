@@ -20,15 +20,3 @@ footer {
   position: fixed;
 
 }
-
-/* [ class ^= 'number-slide' ], [ class *= 'number-slide' ] {
-  align-items: center;
-  background: grey;
-  color: white;
-  display: flex;
-  font-size: 50px;
-  font-weight: 500;
-  height: 300px;
-  justify-content: center;
-  max-height: 100vh;
-} */

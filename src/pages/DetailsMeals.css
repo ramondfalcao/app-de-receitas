@@ -1,0 +1,28 @@
+.img-details {
+  height: 50vh;
+  width: 100%;
+}
+
+.title-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-details {
+  margin-right: 5px;
+}
+
+.ingredients-section {
+  align-items: center;
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.instructions-section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

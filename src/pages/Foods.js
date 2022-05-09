@@ -6,7 +6,6 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { loadingAll } from '../redux/action';
 import { callApiFoods } from '../redux/action/actionsAsysc';
-import './Foods.css';
 
 export default function Foods(props) {
   const { history } = props;

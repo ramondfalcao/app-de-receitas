@@ -1,11 +1,12 @@
 .categories-container {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: auto auto auto;
   width: 100%;
 }
 
 .btn-category {
-  font-size: 12px;
-  padding: 4px;
+  font-size: 17px;
+  padding: 6px;
 }
 

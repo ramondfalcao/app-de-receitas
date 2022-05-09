@@ -9,6 +9,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import CardDrinksCarousel from '../components/CardDrinksCarousel';
 import { favoriteMealsLocalStorage } from '../helpers/helpers';
+import './DetailsMeals.css';
 
 const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
@@ -90,49 +91,62 @@ export default function DetailsMeals(props) {
   }
 
   return (
-    <div>
-      <img data-testid="recipe-photo" src={ meal.strMealThumb } alt={ meal.strMeal } />
-      <h1 data-testid="recipe-title">{ meal.strMeal }</h1>
-      <button type="button" onClick={ linkCopied }>
-        <img data-testid="share-btn" src={ shareIcon } alt="share-icon" />
-      </button>
-      <button
-        type="button"
-        onClick={ () => {
-          favoriteMealsLocalStorage(meal, 'food');
-          setFavoriteButton(!favoriteButton);
-        } }
-      >
-        {(favoriteButton
-          ? (
-            <img
-              data-testid="favorite-btn"
-              src={ blackHeartIcon }
-              alt="black-heart-icon"
-            />
-          )
-          : (
-            <img
-              data-testid="favorite-btn"
-              src={ whiteHeartIcon }
-              alt="white-heart-icon"
-            />
-          )
-        )}
-
-      </button>
+    <main className="main-details">
+      <img
+        className="img-details"
+        data-testid="recipe-photo"
+        src={ meal.strMealThumb }
+        alt={ meal.strMeal }
+      />
+      <div className="title-section">
+        <h1 data-testid="recipe-title">{ meal.strMeal }</h1>
+        <div>
+          <button className="btn-details" type="button" onClick={ linkCopied }>
+            <img data-testid="share-btn" src={ shareIcon } alt="share-icon" />
+          </button>
+          <button
+            type="button"
+            className="btn-details"
+            onClick={ () => {
+              favoriteMealsLocalStorage(meal, 'food');
+              setFavoriteButton(!favoriteButton);
+            } }
+          >
+            {(favoriteButton
+              ? (
+                <img
+                  data-testid="favorite-btn"
+                  src={ blackHeartIcon }
+                  alt="black-heart-icon"
+                />
+              )
+              : (
+                <img
+                  data-testid="favorite-btn"
+                  src={ whiteHeartIcon }
+                  alt="white-heart-icon"
+                />
+              )
+            )}
+          </button>
+        </div>
+      </div>
       {messageLinkCopied && <p>Link copied!</p>}
       <p data-testid="recipe-category">{ meal.strCategory }</p>
-      <h2>Ingredients</h2>
-      {ingredients.map((item, index) => (
-        <p
-          key={ index }
-          data-testid={ `${index}-ingredient-name-and-measure` }
-        >
-          {`${item[1]} - ${measures[index][1]}`}
-        </p>))}
-      <h2>Instructions</h2>
-      <p data-testid="instructions">{ meal.strInstructions }</p>
+      <div className="ingredients-section">
+        <h2>Ingredients</h2>
+        {ingredients.map((item, index) => (
+          <p
+            key={ index }
+            data-testid={ `${index}-ingredient-name-and-measure` }
+          >
+            {`${item[1]} - ${measures[index][1]}`}
+          </p>))}
+      </div>
+      <div className="instructions-section">
+        <h2>Instructions</h2>
+        <p data-testid="instructions">{ meal.strInstructions }</p>
+      </div>
       <h2>Video</h2>
       <iframe
         data-testid="video"
@@ -149,7 +163,7 @@ export default function DetailsMeals(props) {
       {/* <p data-testid={ `${index}-recomendation-card` } /> */}
       <CardDrinksCarousel mazimumArraySize={ 6 } testid="-recomendation-card" />
       {actionButton()}
-    </div>
+    </main>
   );
 }
 

@@ -14,3 +14,7 @@
 .checkbox {
   margin-right: 10px;
 }
+
+.risk {
+  text-decoration: line-through;
+}

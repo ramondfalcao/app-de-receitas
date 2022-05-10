@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
-import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import Header from '../components/Header';
 import {
   doneRecipesMeals,
   favoriteMealsLocalStorage,
-  inProgressRecipesMeals,
+  inProgressRecipesMeals
 } from '../helpers/helpers';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import { callApiFoodsOfId } from '../redux/action/actionsAsysc';
-import Header from '../components/Header';
 import './RecipeInProgress.css';
 
 const EXPOSURE_TIME = 5000;
@@ -54,6 +54,11 @@ export default function RecipeMealsInProgress(props) {
   function handleCheckbox({ target }) {
     const newInProgress = inProgressRecipesMeals(mealId, target.value);
     setInProgress(newInProgress.meals[mealId]);
+    if (target.checked) {
+      target.parentNode.className = 'checkbox risk';
+    } else {
+      target.parentNode.className = 'checkbox';
+    }
   }
 
   function handleClickFinish() {

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
@@ -71,7 +72,7 @@ export default function RecipeMealsInProgress(props) {
 
   return (
     <>
-      <Header title="Recipe In Progress" />
+      <Header title="Food In Progress" />
       <main>
         <img
           className="img-details"
@@ -144,16 +145,18 @@ export default function RecipeMealsInProgress(props) {
           <h2>Instructions</h2>
           <p data-testid="instructions">{meal.strInstructions}</p>
         </div>
-        <button
-          data-testid="finish-recipe-btn"
-          type="button"
-          className="btn-finish-recipe"
-          onClick={ handleClickFinish }
-          disabled={ inProgress && (inProgress
-            .length !== ingredients.length) }
-        >
-          Finish Recipe
-        </button>
+        <div className="finish-recipe">
+          <button
+            data-testid="finish-recipe-btn"
+            type="button"
+            className="btn-finish-recipe"
+            onClick={ handleClickFinish }
+            disabled={ inProgress && (inProgress
+              .length !== ingredients.length) }
+          >
+            Finish Recipe
+          </button>
+        </div>
       </main>
     </>
   );

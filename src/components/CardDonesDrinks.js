@@ -29,7 +29,12 @@ export default function CardDonesDrinks(props) {
         </Link>
         <div className="container-details">
           <Link to={ `/drinks/${recipe.id}` }>
-            <h1 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h1>
+            <h1
+              className="title-card"
+              data-testid={ `${index}-horizontal-name` }
+            >
+              {recipe.name}
+            </h1>
           </Link>
           <div>
             <p data-testid={ `${index}-horizontal-done-date` }>{ recipe.doneDate }</p>

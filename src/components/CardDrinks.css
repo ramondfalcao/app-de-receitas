@@ -1,8 +1,10 @@
+/* stylelint-disable */
 .cards-container {
   column-gap: 2%;
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
+  margin-bottom: 50px;
   margin-top: 15px;
   width: 100%;
 }

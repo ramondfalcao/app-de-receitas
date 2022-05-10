@@ -81,3 +81,17 @@
   margin-bottom: 20px;
   position: fixed;
 }
+
+.finish-recipe {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-finish-recipe {
+  background-color: #23c483;
+  bottom: 0;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  margin-bottom: 20px;
+  position: fixed;
+}

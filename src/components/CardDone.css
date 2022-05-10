@@ -1,24 +1,28 @@
 .main-card-done {
-    display: flex;
-    justify-content: center;
-    width: 100%;  
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .cardsDone {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #e0e0e0;
-    border-radius: 30px;
-    box-shadow: 10px 10px 20px #bebebe;
-    color: black;
-    height: 170px;
-    margin-bottom: 20px;
-    text-align: center;
-    transition: 0.5s;
-    width: 280px;
+  align-items: center;
+  background: #e0e0e0;
+  border-radius: 30px;
+  box-shadow: 10px 10px 20px #bebebe;
+  color: black;
+  display: flex;
+  height: 170px;
+  justify-content: center;
+  margin-bottom: 20px;
+  text-align: center;
+  transition: 0.5s;
+  width: 280px;
 }
 
 .container-details {
   margin-left: 10px;
+}
+
+.title-card {
+  text-decoration: none;
 }

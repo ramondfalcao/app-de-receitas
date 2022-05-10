@@ -1,5 +1,5 @@
 main {
-  background-color: whitesmoke
+  background-color: whitesmoke;
 }
 
 .categories-container {
@@ -11,6 +11,7 @@ main {
 }
 
 .btn-category {
+  cursor: pointer;
   font-size: 17px;
   padding: 6px;
 }

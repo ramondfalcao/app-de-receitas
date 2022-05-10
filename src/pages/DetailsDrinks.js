@@ -9,7 +9,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import CardMealsCarousel from '../components/CardMealsCarousel';
 import { favoriteDrinksLocalStorage } from '../helpers/helpers';
-import './DetailsMeals.css';
+import Header from '../components/Header';
 
 const EXPOSURE_TIME = 5000;
 export default function DetailsDrinks(props) {
@@ -59,18 +59,21 @@ export default function DetailsDrinks(props) {
       .some((id) => +id === +drinkId);
     if (isTrueinProgress) {
       return (
-        <button
-          className="btn-start-recipe"
-          type="button"
-          data-testid="start-recipe-btn"
-          onClick={ () => history.push(`/drinks/${drinkId}/in-progress`) }
-        >
-          Continue Recipe
-        </button>
+        <div className="continue-recipe">
+          <button
+            className="btn-continue-recipe"
+            type="button"
+            data-testid="start-recipe-btn"
+            onClick={ () => history.push(`/drinks/${drinkId}/in-progress`) }
+          >
+            Continue Recipe
+          </button>
+        </div>
       );
     }
 
     console.log(favoriteButton);
+    console.log(ingredients);
 
     return (
       <div className="start-recipe">
@@ -95,64 +98,68 @@ export default function DetailsDrinks(props) {
   }
 
   return (
-    <main className="main-details">
-      <img
-        className="img-details"
-        data-testid="recipe-photo"
-        src={ drink.strDrinkThumb }
-        alt={ drink.strDrink }
-      />
-      <div className="title-section">
-        <h1 data-testid="recipe-title">{ drink.strDrink }</h1>
-        <div>
-          <button className="btn-details" type="button" onClick={ linkCopied }>
-            <img data-testid="share-btn" src={ shareIcon } alt="share-icon" />
-          </button>
-          <button
-            type="button"
-            className="btn-details"
-            onClick={ () => {
-              favoriteDrinksLocalStorage(drink, 'drink');
-              setFavoriteButton(!favoriteButton);
-            } }
-          >
-            {(favoriteButton
-              ? (
-                <img
-                  data-testid="favorite-btn"
-                  src={ blackHeartIcon }
-                  alt="black-heart-icon"
-                />
-              )
-              : (
-                <img
-                  data-testid="favorite-btn"
-                  src={ whiteHeartIcon }
-                  alt="white-heart-icon"
-                />)
-            )}
-          </button>
+    <>
+      <Header title="Details" />
+      <main className="main-details">
+        <img
+          className="img-details"
+          data-testid="recipe-photo"
+          src={ drink.strDrinkThumb }
+          alt={ drink.strDrink }
+        />
+        <div className="title-section">
+          <h1 data-testid="recipe-title">{ drink.strDrink }</h1>
+          <div>
+            <button className="btn-details" type="button" onClick={ linkCopied }>
+              <img src={ shareIcon } alt="share-icon" />
+            </button>
+            <button
+              type="button"
+              className="btn-details"
+              onClick={ () => {
+                favoriteDrinksLocalStorage(drink, 'drink');
+                setFavoriteButton(!favoriteButton);
+              } }
+            >
+              {(favoriteButton
+                ? (
+                  <img
+                    data-testid="favorite-btn"
+                    src={ blackHeartIcon }
+                    alt="black-heart-icon"
+                  />
+                )
+                : (
+                  <img
+                    data-testid="favorite-btn"
+                    src={ whiteHeartIcon }
+                    alt="white-heart-icon"
+                  />)
+              )}
+            </button>
+          </div>
         </div>
-      </div>
-      {messageLinkCopied && <p>Link copied!</p>}
-      <p data-testid="recipe-category">{ `${drink.strCategory} ${drink.strAlcoholic}`}</p>
-      <div className="ingredients-section">
-        <h2>Ingredients</h2>
-        {ingredients.map((item, index) => (
-          <p
-            key={ index }
-            data-testid={ `${index}-ingredient-name-and-measure` }
-          >
-            { measures[index][1] ? `${item[1]} - ${measures[index][1]}` : item[1] }
-          </p>))}
-      </div>
-      <div className="instructions-section">
-        <h2>Instructions</h2>
-        <p data-testid="instructions">{ drink.strInstructions }</p>
-      </div>
-      <CardMealsCarousel mazimumArraySize={ 6 } testid="-recomendation-card" />
-      {actionButton()}
-    </main>
+        {messageLinkCopied && <p>Link copied!</p>}
+        <p>{ `${drink.strCategory} ${drink.strAlcoholic}`}</p>
+        <div className="ingredients-section">
+          <h2>Ingredients</h2>
+          {ingredients.map((item, index) => (
+            <p
+              key={ index }
+              data-testid={ `${index}-ingredient-name-and-measure` }
+            >
+              { measures[index][1] ? `${item[1]} - ${measures[index][1]}` : item[1] }
+            </p>
+          ))}
+        </div>
+        <div className="instructions-section">
+          <h2>Instructions</h2>
+          <p data-testid="instructions">{ drink.strInstructions }</p>
+        </div>
+        <CardMealsCarousel mazimumArraySize={ 6 } testid="-recomendation-card" />
+        {actionButton()}
+      </main>
+    </>
   );
 }
 

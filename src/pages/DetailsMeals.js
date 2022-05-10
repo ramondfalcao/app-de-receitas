@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +11,7 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 import CardDrinksCarousel from '../components/CardDrinksCarousel';
 import { favoriteMealsLocalStorage } from '../helpers/helpers';
 import './DetailsMeals.css';
+import Header from '../components/Header';
 
 const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
@@ -60,14 +62,16 @@ export default function DetailsMeals(props) {
       .some((id) => +id === +mealId);
     if (isTrueinProgress) {
       return (
-        <button
-          className="btn-start-recipe"
-          type="button"
-          data-testid="start-recipe-btn"
-          onClick={ () => history.push(`/foods/${mealId}/in-progress`) }
-        >
-          Continue Recipe
-        </button>
+        <div className="continue-recipe">
+          <button
+            className="btn-start-recipe"
+            type="button"
+            data-testid="start-recipe-btn"
+            onClick={ () => history.push(`/foods/${mealId}/in-progress`) }
+          >
+            Continue Recipe
+          </button>
+        </div>
       );
     }
     return (
@@ -93,83 +97,91 @@ export default function DetailsMeals(props) {
   }
 
   return (
-    <main className="main-details">
-      <img
-        className="img-details"
-        data-testid="recipe-photo"
-        src={ meal.strMealThumb }
-        alt={ meal.strMeal }
-      />
-      <div className="title-section">
-        <h1 data-testid="recipe-title">{ meal.strMeal }</h1>
-        <div>
-          <button className="btn-details" type="button" onClick={ linkCopied }>
-            <img data-testid="share-btn" src={ shareIcon } alt="share-icon" />
-          </button>
-          <button
-            type="button"
-            className="btn-details"
-            onClick={ () => {
-              favoriteMealsLocalStorage(meal, 'food');
-              setFavoriteButton(!favoriteButton);
-            } }
-          >
-            {(favoriteButton
-              ? (
-                <img
-                  data-testid="favorite-btn"
-                  src={ blackHeartIcon }
-                  alt="black-heart-icon"
-                />
-              )
-              : (
-                <img
-                  data-testid="favorite-btn"
-                  src={ whiteHeartIcon }
-                  alt="white-heart-icon"
-                />
-              )
-            )}
-          </button>
-        </div>
-      </div>
-      {messageLinkCopied && <p>Link copied!</p>}
-      <p data-testid="recipe-category">{ meal.strCategory }</p>
-      <div className="ingredients-section">
-        <h2>Ingredients</h2>
-        {ingredients.map((item, index) => (
-          <p
-            key={ index }
-            data-testid={ `${index}-ingredient-name-and-measure` }
-          >
-            {`${item[1]} - ${measures[index][1]}`}
-          </p>))}
-      </div>
-      <div className="instructions-section">
-        <h2>Instructions</h2>
-        <p data-testid="instructions">{ meal.strInstructions }</p>
-      </div>
-      <div className="video-section">
-        <h2>Video</h2>
-        <iframe
-          className="video"
-          data-testid="video"
-          width="560"
-          height="315"
-          src={ meal.strYoutube && meal.strYoutube.replace(re, 'embed/') }
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write;
-        encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
+    <>
+      <Header title="Details" />
+      <main className="main-details">
+        <img
+          className="img-details"
+          data-testid="recipe-photo"
+          src={ meal.strMealThumb }
+          alt={ meal.strMeal }
         />
-      </div>
-      <div className="recommend-section">
-        <h2>Recommend</h2>
-        <CardDrinksCarousel mazimumArraySize={ 6 } testid="-recomendation-card" />
-        {actionButton()}
-      </div>
-    </main>
+        <div className="title-section">
+          <h2 className="title-recipe" data-testid="recipe-title">{ meal.strMeal }</h2>
+          <div>
+            <button className="btn-details" type="button" onClick={ linkCopied }>
+              <img data-testid="share-btn" src={ shareIcon } alt="share-icon" />
+            </button>
+            <button
+              type="button"
+              className="btn-details"
+              onClick={ () => {
+                favoriteMealsLocalStorage(meal, 'food');
+                setFavoriteButton(!favoriteButton);
+              } }
+            >
+              {(favoriteButton
+                ? (
+                  <img
+                    data-testid="favorite-btn"
+                    src={ blackHeartIcon }
+                    alt="black-heart-icon"
+                  />
+                )
+                : (
+                  <img
+                    data-testid="favorite-btn"
+                    src={ whiteHeartIcon }
+                    alt="white-heart-icon"
+                  />
+                )
+              )}
+            </button>
+          </div>
+        </div>
+        {messageLinkCopied && <p>Link copied!</p>}
+        <p
+          className="category-recipe"
+          data-testid="recipe-category"
+        >
+          { meal.strCategory }
+        </p>
+        <div className="ingredients-section">
+          <h2>Ingredients</h2>
+          {ingredients.map((item, index) => (
+            <p
+              key={ index }
+              data-testid={ `${index}-ingredient-name-and-measure` }
+            >
+              {`${item[1]} - ${measures[index][1]}`}
+            </p>))}
+        </div>
+        <div className="instructions-section">
+          <h2>Instructions</h2>
+          <p data-testid="instructions">{ meal.strInstructions }</p>
+        </div>
+        <div className="video-section">
+          <h2>Video</h2>
+          <iframe
+            className="video"
+            data-testid="video"
+            width="560"
+            height="315"
+            src={ meal.strYoutube && meal.strYoutube.replace(re, 'embed/') }
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write;
+        encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+        <div className="recommend-section">
+          <h2>Recommend</h2>
+          <CardDrinksCarousel mazimumArraySize={ 6 } testid="-recomendation-card" />
+          {actionButton()}
+        </div>
+      </main>
+    </>
   );
 }
 

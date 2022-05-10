@@ -22,6 +22,7 @@ export default function Search({ title }) {
     <form className="form-search">
       <div className="input-search-container">
         <input
+          className="input"
           placeholder="search recipe"
           data-testid="search-input"
           onChange={ ({ target }) => setSearch(target.value) }

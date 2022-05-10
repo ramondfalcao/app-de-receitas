@@ -12,6 +12,8 @@ import {
   inProgressRecipesMeals,
 } from '../helpers/helpers';
 import { callApiFoodsOfId } from '../redux/action/actionsAsysc';
+import Header from '../components/Header';
+import './RecipeInProgress.css';
 
 const EXPOSURE_TIME = 5000;
 export default function RecipeMealsInProgress(props) {
@@ -68,71 +70,92 @@ export default function RecipeMealsInProgress(props) {
   }, []);
 
   return (
-    <main>
-      <img
-        data-testid="recipe-photo"
-        src={ meal.strMealThumb }
-        alt={ meal.strMeal }
-      />
-      <h2 data-testid="recipe-title">{meal.strMeal}</h2>
-      <button type="button" onClick={ linkCopied }>
-        <img data-testid="share-btn" src={ shareIcon } alt="share-icon" />
-      </button>
-      <button
-        type="button"
-        onClick={ () => {
-          favoriteMealsLocalStorage(meal, 'food');
-          setFavoriteButton(!favoriteButton);
-        } }
-      >
-        {(favoriteButton
-          ? (
-            <img
-              data-testid="favorite-btn"
-              src={ blackHeartIcon }
-              alt="black-heart-icon"
-            />
-          )
-          : (
-            <img
-              data-testid="favorite-btn"
-              src={ whiteHeartIcon }
-              alt="white-heart-icon"
-            />)
-        )}
-      </button>
-      {messageLinkCopied && <p>Link copied!</p>}
-      <p data-testid="recipe-category">{meal.strCategory}</p>
-      {ingredients.map((ingredient, index) => (
-        <label
-          key={ index }
-          data-testid={ `${index}-ingredient-step` }
-          htmlFor={ `ingredient-${index}` }
+    <>
+      <Header title="Recipe In Progress" />
+      <main>
+        <img
+          className="img-details"
+          data-testid="recipe-photo"
+          src={ meal.strMealThumb }
+          alt={ meal.strMeal }
+        />
+        <div className="title-section">
+          <h2 className="title-recipe" data-testid="recipe-title">{meal.strMeal}</h2>
+          <div>
+            <button className="btn-details" type="button" onClick={ linkCopied }>
+              <img data-testid="share-btn" src={ shareIcon } alt="share-icon" />
+            </button>
+            <button
+              type="button"
+              className="btn-details"
+              onClick={ () => {
+                favoriteMealsLocalStorage(meal, 'food');
+                setFavoriteButton(!favoriteButton);
+              } }
+            >
+              {(favoriteButton
+                ? (
+                  <img
+                    data-testid="favorite-btn"
+                    src={ blackHeartIcon }
+                    alt="black-heart-icon"
+                  />
+                )
+                : (
+                  <img
+                    data-testid="favorite-btn"
+                    src={ whiteHeartIcon }
+                    alt="white-heart-icon"
+                  />)
+              )}
+            </button>
+          </div>
+        </div>
+        {messageLinkCopied && <p>Link copied!</p>}
+        <p
+          className="category-recipe"
+          data-testid="recipe-category"
         >
-          <input
-            id={ `ingredient-${index}` }
-            name={ `ingredient-${index}` }
-            type="checkbox"
-            value={ `${ingredient[1]} - ${measures[index][1]}` }
-            checked={ inProgress
-              .includes(`${ingredient[1]} - ${measures[index][1]}`) }
-            onChange={ handleCheckbox }
-          />
-          {`${ingredient[1]} - ${measures[index][1]}`}
-        </label>
-      ))}
-      <p data-testid="instructions">{meal.strInstructions}</p>
-      <button
-        data-testid="finish-recipe-btn"
-        type="button"
-        className="btn-finish-recipe"
-        onClick={ handleClickFinish }
-        disabled={ inProgress && (inProgress
-          .length !== ingredients.length) }
-      >
-        Finish Recipe
-      </button>
-    </main>
+          {meal.strCategory}
+        </p>
+        <div className="ingredients-container">
+          {ingredients.map((ingredient, index) => (
+            <div className="checked-recipes" key={ index }>
+              <label
+                data-testid={ `${index}-ingredient-step` }
+                htmlFor={ `ingredient-${index}` }
+              >
+                <input
+                  id={ `ingredient-${index}` }
+                  name={ `ingredient-${index}` }
+                  className="checkbox"
+                  type="checkbox"
+                  value={ `${ingredient[1]} - ${measures[index][1]}` }
+                  checked={ inProgress
+                    .includes(`${ingredient[1]} - ${measures[index][1]}`) }
+                  onChange={ handleCheckbox }
+                />
+                {`${ingredient[1]} - ${measures[index][1]}`}
+              </label>
+            </div>
+          ))}
+        </div>
+        <div className="instructions-section">
+          <h2>Instructions</h2>
+          <p data-testid="instructions">{meal.strInstructions}</p>
+        </div>
+        <button
+          data-testid="finish-recipe-btn"
+          type="button"
+          className="btn-finish-recipe"
+          onClick={ handleClickFinish }
+          disabled={ inProgress && (inProgress
+            .length !== ingredients.length) }
+        >
+          Finish Recipe
+        </button>
+      </main>
+    </>
   );
 }
 

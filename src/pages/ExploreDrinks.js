@@ -22,6 +22,7 @@ export default function ExploreDrinks() {
       <section className="section-buttons-explore">
         <button
           type="button"
+          className="explore-btn"
           data-testid="explore-by-ingredient"
           onClick={ () => history.push('/explore/drinks/ingredients') }
         >
@@ -29,6 +30,7 @@ export default function ExploreDrinks() {
         </button>
         <button
           type="button"
+          className="explore-btn"
           data-testid="explore-surprise"
           onClick={ () => history.push(`/drinks/${drink.idDrink}`) }
         >

@@ -37,6 +37,7 @@ export default function CardMealsCarousel({ mazimumArraySize, testid }) {
                 alt={ meal.strMeal }
               />
               <h3
+                className="title-recomended"
                 data-testid={ `${index}-recomendation-title` }
               >
                 { meal.strMeal }

@@ -10,17 +10,58 @@
 .profile-btn {
   background-color: transparent;
   border: 0;
+  cursor: pointer;
   margin-left: 10px;
 }
 
 .search-btn {
   background-color: transparent;
   border: 0;
+  cursor: pointer;
   margin-right: 10px;
-  padding: 2px;
+  padding: 4px;
+}
+
+.home-btn {
+  width: 30px;
 }
 
 .title-header {
   font-size: 30px;
+}
+
+/* From uiverse.io by @alexruix */
+.group {
+  align-items: center;
+  display: flex;
+  line-height: 28px;
+  margin-top: 20px;
+  max-width: 190px;
+  position: relative;
+}
+
+.input {
+  background-color: #f3f3f4;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  color: #0d0c22;
+  height: 40px;
+  line-height: 28px;
+  outline: none;
+  padding: 0 1rem;
+  padding-left: 2.5rem;
+  transition: 0.3s ease;
+  width: 100%;
+}
+
+.input::placeholder {
+  color: #9e9ea7;
+}
+
+.input:focus, input:hover {
+  background-color: whitesmoke;
+  border-color: rgba(78, 248, 55, 0.4);
+  box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+  outline: none;
 }
 

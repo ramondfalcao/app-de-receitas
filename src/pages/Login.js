@@ -55,7 +55,7 @@ function Login() {
           placeholder="email@email.com"
           data-testid="email-input"
           name="email"
-          className="inputs input"
+          className="inputs input-login"
           value={ email }
           onChange={ handleChange }
           /* onChange={ (({ target }) => setEmail(target.value), handleLoginValidation) } */
@@ -65,7 +65,7 @@ function Login() {
           placeholder="********"
           data-testid="password-input"
           value={ password }
-          className="inputs input"
+          className="inputs input-login"
           name="password"
           onChange={ handleChange }
           /* onChange={ (({ target }) => setPassword(target.value), handleLoginValidation) } */

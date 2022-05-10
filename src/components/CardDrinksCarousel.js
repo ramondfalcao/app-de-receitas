@@ -25,6 +25,7 @@ export default function CardDrinksCarousel({ mazimumArraySize, testid }) {
           <Link
             key={ drink.idDrink }
             to={ `/drinks/${drink.idDrink}` }
+            className="title-recomended"
           >
             <div
               data-testid={ `${index}${testid}` }
@@ -36,6 +37,7 @@ export default function CardDrinksCarousel({ mazimumArraySize, testid }) {
                 alt={ drink.strDrink }
               />
               <h3
+                className="title-recomended"
                 data-testid={ `${index}-recomendation-title` }
               >
                 { drink.strDrink }

@@ -1,3 +1,4 @@
+// import md5 from 'crypto-js/md5';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
@@ -7,10 +8,12 @@ import './Profile.css';
 
 export default function Profile() {
   const [user, setUser] = useState('');
+  //  const [hash, setHash] = useState('');
 
   useEffect(() => {
     const emailUser = JSON.parse(localStorage.getItem('user'));
     if (emailUser) {
+    //  setHash(md5(emailUser).toString());
       setUser(emailUser);
     }
   }, []);
@@ -19,6 +22,7 @@ export default function Profile() {
     <>
       <Header title="Profile" search={ false } />
       <main className="main-Profile">
+        <img className="img-profile" src="https://www.gravatar.com/avatar/bcd25d64ca2e2022605e19c5d86e9e01" alt={ user.email } />
         <p data-testid="profile-email">{ user.email }</p>
         <section className="section-buttons">
           <Link to="/done-recipes">

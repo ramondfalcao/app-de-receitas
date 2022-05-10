@@ -105,7 +105,6 @@ export default function Foods(props) {
     )
   );
 }
-
 Foods.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
 };

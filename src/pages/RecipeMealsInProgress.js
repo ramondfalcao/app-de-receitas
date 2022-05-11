@@ -78,7 +78,7 @@ export default function RecipeMealsInProgress(props) {
   return (
     <>
       <Header title="Food In Progress" />
-      <main>
+      <main className="main-recipe-in-progress">
         <img
           className="img-details"
           data-testid="recipe-photo"

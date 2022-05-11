@@ -58,7 +58,6 @@ function Login() {
           className="inputs input-login"
           value={ email }
           onChange={ handleChange }
-          /* onChange={ (({ target }) => setEmail(target.value), handleLoginValidation) } */
         />
         <input
           type="password"
@@ -68,7 +67,6 @@ function Login() {
           className="inputs input-login"
           name="password"
           onChange={ handleChange }
-          /* onChange={ (({ target }) => setPassword(target.value), handleLoginValidation) } */
         />
         <button
           data-testid="login-submit-btn"

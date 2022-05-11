@@ -1,6 +1,13 @@
 main {
   background-color: whitesmoke;
-  margin-bottom: 10vh;
+}
+
+.main-details {
+  margin-bottom: 70px;
+}
+
+.main-recipe-in-progress {
+  margin-bottom: 60px;
 }
 
 .categories-container {

@@ -1,3 +1,4 @@
+/* stylelint-disable */
 .main-login {
   align-items: center;
   background-color: #faa307ff;
@@ -15,10 +16,10 @@
 }
 
 .inputs {
-  width: 80%;
   margin-bottom: 2px;
   margin-top: 17px;
   text-align: center;
+  width: 80%;
 }
 
 .input-login {

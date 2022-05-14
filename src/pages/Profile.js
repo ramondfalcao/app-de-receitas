@@ -23,7 +23,7 @@ export default function Profile() {
     <>
       <Header title="Profile" search={ false } />
       <main className="main-Profile">
-        <img className="img-profile" src="https://www.gravatar.com/avatar/bcd25d64ca2e2022605e19c5d86e9e01" alt={ user.email } />
+        <img className="img-profile" src={ `https://www.gravatar.com/avatar/${user.email}` } alt={ user.email } />
         <p data-testid="profile-email">{ user.email }</p>
         <section className="section-buttons">
           <Link to="/done-recipes">

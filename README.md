@@ -41,7 +41,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Redux](https://redux.js.org/)
 
 ## Instruções para abrir a aplicação
-[Link Da Aplicação](https://ramondfalcao.github.io/trivia-game/)
+[Link Da Aplicação](https://ramondfalcao-app-de-receitas.netlify.app/)
 
 1. Clone o repositório
   * `git clone git@github.com:ramondfalcao/app-de-receitas.git`

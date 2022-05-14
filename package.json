@@ -2,6 +2,7 @@
   "name": "recipes-app-test",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ramondfalcao.github.io/app-de-receitas",
   "engines": {
     "node": "16"
   },
@@ -34,6 +35,8 @@
     "websocket-extensions": ">=0.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "cy": "cypress run",
     "cy:open": "cypress open",
     "start": "react-scripts start",
@@ -67,6 +70,7 @@
     "eslint-config-trybe-frontend": "1.2.3",
     "eslint-plugin-react-hooks": "^4.2.0",
     "fs-extra": "^9.0.1",
+    "gh-pages": "^4.0.0",
     "mocha": "^8.0.1",
     "mochawesome": "^6.1.1",
     "mochawesome-merge": "^4.1.0",

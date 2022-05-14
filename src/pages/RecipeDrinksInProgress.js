@@ -83,11 +83,12 @@ export default function RecipeDrinksInProgress(props) {
         <div className="title-section">
           <h2 data-testid="recipe-title">{drink.strDrink}</h2>
           <div>
-            <button type="button" onClick={ linkCopied }>
+            <button type="button" className="btn-details" onClick={ linkCopied }>
               <img data-testid="share-btn" src={ shareIcon } alt="share-icon" />
             </button>
             <button
               type="button"
+              className="btn-details"
               onClick={ () => {
                 favoriteDrinksLocalStorage(drink, 'drink');
                 setFavoriteButton(!favoriteButton);

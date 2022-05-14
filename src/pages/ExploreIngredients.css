@@ -1,4 +1,5 @@
 .main-ingredients {
-    display: grid;
-    grid-template-columns: auto auto; 
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-bottom: 82px;
 }

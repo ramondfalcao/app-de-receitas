@@ -38,7 +38,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Css](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [ReactJs](https://pt-br.reactjs.org/)
 - [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-- [Css](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [Redux](https://redux.js.org/)
 
 ## Instruções para abrir a aplicação

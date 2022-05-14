@@ -1,9 +1,11 @@
+/* stylelint-disable  */
 .cards-container {
   column-gap: 2%;
   display: grid;
   grid-template-columns: auto;
   justify-content: center;
   margin-top: 25px;
+  margin-bottom: 50px;
   width: 100%;
 }
 
@@ -24,10 +26,6 @@
   width: 350px;
 }
 
-/* .card-food:hover {
-  transform: scale(1.2);
-} */
-
 .title-cards-food {
   color: black;
   font-size: 40px;
@@ -37,3 +35,20 @@
 .link-food {
   text-decoration: none;
 }
+
+
+@media only screen and (min-width: 780px) and (max-width: 1115px)  {
+  .cards-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-bottom: 50px;
+  }
+}
+
+@media only screen and (min-width: 1115px)  {
+  .cards-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+}
+

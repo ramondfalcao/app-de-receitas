@@ -128,6 +128,7 @@ export default function RecipeDrinksInProgress(props) {
               >
                 <input
                   id={ `ingredient-${index}` }
+                  className="checkbox"
                   name={ `ingredient-${index}` }
                   type="checkbox"
                   value={ `${ingredient[1]} - ${measures[index][1]}` }

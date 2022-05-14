@@ -23,6 +23,7 @@ export default function ExploreMeals() {
         <button
           type="button"
           className="explore-btn"
+          id="explore-ingredient"
           data-testid="explore-by-ingredient"
           onClick={ () => history.push('/explore/foods/ingredients') }
         >
@@ -31,6 +32,7 @@ export default function ExploreMeals() {
         <button
           type="button"
           className="explore-btn"
+          id="explore-nationality"
           data-testid="explore-by-nationality"
           onClick={ () => history.push('/explore/foods/nationalities') }
         >
@@ -39,6 +41,7 @@ export default function ExploreMeals() {
         <button
           type="button"
           className="explore-btn"
+          id="explore-surprise"
           data-testid="explore-surprise"
           onClick={ () => history.push(`/foods/${meal.idMeal}`) }
         >

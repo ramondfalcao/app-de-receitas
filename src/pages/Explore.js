@@ -13,6 +13,7 @@ export default function Explore() {
         <section className="section-explore">
           <button
             className="explore-btn"
+            id="explore-foods"
             type="button"
             data-testid="explore-foods"
             onClick={ () => history.push('/explore/foods') }
@@ -22,6 +23,7 @@ export default function Explore() {
           <button
             type="button"
             className="explore-btn"
+            id="explore-drinks"
             data-testid="explore-drinks"
             onClick={ () => history.push('/explore/drinks') }
           >

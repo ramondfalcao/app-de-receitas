@@ -153,12 +153,12 @@ export default function DetailsDrinks(props) {
             </p>
           ))}
         </div>
-        <div className="instructions-section">
+        <div className="recommend-section">
           <h2>Instructions</h2>
           <p data-testid="instructions">{ drink.strInstructions }</p>
+          <CardMealsCarousel mazimumArraySize={ 6 } testid="-recomendation-card" />
+          {actionButton()}
         </div>
-        <CardMealsCarousel mazimumArraySize={ 6 } testid="-recomendation-card" />
-        {actionButton()}
       </main>
     </>
   );
